@@ -1,9 +1,6 @@
-# 10up Engineering Best Practices
+# SAU/CAL Engineering Best Practices
 
-These are the official best practices for 10up. This guide dictates how we, as a company, engineer websites. The purpose behind them is to improve the quality of the experiences we build as well as to standardize in order to facilitate more effective collaboration.
-
-<a href="http://10up.com/contact/"><img src="https://10updotcom-wpengine.s3.amazonaws.com/uploads/2016/08/10up_github_banner-2.png" width="850"></a>
-
+These are the official best practices for SAU/CAL. This guide dictates how we, as a company, engineer websites. The purpose behind them is to improve the quality of the experiences we build as well as to standardize in order to facilitate more effective collaboration.
 
 **[Start reading ☞](https://10up.github.io/Engineering-Best-Practices/)**
 
@@ -20,4 +17,4 @@ bundle exec jekyll serve
 
 ## License
 
-Released under MIT by, and copyright 2014 by 10up.
+This code is forked from <a href="https://github.com/10up/Engineering-Best-Practices/">10up's Engineering Best Practices</a>. As such, it is a derivative work. Why not fork the things, right? Released under MIT license. Copyright 2014 by 10up; modifications copyright 2016 by SAU/CAL.
