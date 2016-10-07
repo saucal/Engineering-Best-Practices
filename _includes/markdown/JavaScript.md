@@ -181,10 +181,6 @@ We conform to [WordPress JavaScript coding standards](http://make.wordpress.org/
 
 We conform to the [WordPress JavaScript Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/).
 
-<h3 id="unit-and-integration-testing">Unit and Integration Testing {% include Util/top %}</h3>
-
-At 10up, we generally employ unit and integration tests only when building applications that are meant to be distributed. Writing tests for client themes usually does not offer a huge amount of value (there are of course exceptions to this). When we do write tests, we use [Mocha](http://mochajs.org).
-
 <h3 id="libraries">Libraries {% include Util/top %}</h3>
 
 There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of primary libraries used by 10up.
