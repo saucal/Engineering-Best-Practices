@@ -2,9 +2,53 @@ We version control all projects at 10up using [Git](http://git-scm.com/). Versio
 
 ### Structure
 
-The key philosophy that drives our repository structure is *we don't version control things that are version controlled elsewhere*. This means we don't version control WordPress core files or third party plugins. If we are building a theme, we version control only the theme and deploy to the themes directory. Similarly, if we are building a plugin, we version control only the plugin and deploy to the plugins directory. Rather than version control third party libraries, we use [package managers](/Engineering-Best-Practices/tools/#package-managers) to include those dependencies. There are of course exceptions to this.
+The key philosophy that drives our repository structure is *we don't version control things that are version controlled elsewhere*. This means we don't version control WordPress core files or third party plugins. 
 
-The counter argument to this philosophy is "what if the latest version of ______ breaks the site? How will we revert to a working state if we don't version control WordPress core and plugins?". WordPress core is backwards compatible, and we believe in trusting it the same way we trust PHP or MySQL. Similarly, we only install and recommend plugins that we trust. These best practices coupled with our talented engineers gives us confidence that our code will work with core and plugin updates. We still test major updates to plugins and core on staging first. If we discover code in core or a plugin that has issues, we try our best to correct that code and push the changes upstream giving back to the open source community.
+The git repo structure is as follows *always*:
+
+```
+|- wp-content/
+|  |- plugins/ ___________________________ # Include in this folder any plugin you develop or mod.
+|     |- index.php _______________________ # Silence is golden
+|  |- themes/ ____________________________ # Include in this folder any theme or child theme you develop or mod.
+|     |- index.php _______________________ # Silence is golden
+|- .gitignore ____________________________ # Standard Saucal GitIgnore file (see below)
+```
+
+.gitignore file should be
+
+```
+# Ignore everything in the root except the "wp-content" directory.
+/*
+!.gitignore
+!wp-content/
+
+# Ignore everything in the "wp-content" directory, except the "plugins"
+# and "themes" directories.
+wp-content/*
+!wp-content/plugins/
+!wp-content/themes/
+!wp-content/index.php
+
+# Ignore everything in the "plugins" directory, except the plugins you
+# specify (see the commented-out examples for hints on how to do this.)
+wp-content/plugins/*
+!wp-content/plugins/index.php
+# !wp-content/plugins/my-single-file-plugin.php
+# !wp-content/plugins/my-directory-plugin/
+
+# Ignore everything in the "themes" directory, except the themes you
+# specify (see the commented-out example for a hint on how to do this.)
+wp-content/themes/*
+!wp-content/themes/index.php
+# !wp-content/themes/my-theme/
+# !wp-content/themes/my-child-theme/
+.DS_Store
+
+*.lessc.css
+config.codekit
+node_modules/
+```
 
 <h3 id="workflows">Workflows {% include Util/top %}</h3>
 
@@ -69,21 +113,16 @@ All staging branches will branch off ```master``` as well, and should be named `
 
 In some cases, a feature will be large enough to warrant multiple developers working on it at the same time. In order to enable testing the feature as a cohesive unit and avoid merge conflicts when pushing to ```staging``` and ```master``` it is recommended to create a feature branch to act as a staging area. We do this by branching from ```master``` to create the primary feature branch, and then as necessary, create additional branches from the feature branch for distinct items of work. When individual items are complete, merge back to the feature branch. To pull work from ```master```, merge ```master``` into the feature branch and then merge the feature branch into the individual branches. When all work has been merged back into the feature branch, the feature branch can then be merged into ```staging``` and ```master``` as an entire unit of work.
 
-##### Working with WordPress.com VIP
+##### Backporting Client Changes
 
-In a VIP environment, we want every commit to the theme's Subversion repository to be matched 1:1 with a merge commit on our Beanstalk Git repository. This means we add a step to our deployment above: Create a diff between the branch and ```master``` before merging. We can apply this diff as a patch to the VIP Subversion repository.
+In the event that a client or third-party developer makes a change to any file included in the repository, we'll capture the diff of their changeset and import it to our development repository by:
 
-Using non-fast-forward merges allows us to easily track various changes back in the history tree.
-
-##### Backporting VIP
-
-In the event that VIP makes a change to the repository, we'll capture the diff of their changeset and import it to our development repository by:
-
-* Grabbing the diff of their changes
-* Creating a new ```vip-rXXXX``` branch off ```master```
+* Grabbing the diff of their changes (either downloading files from FTP, or some other way)
+* Creating a new ```ext-XXXX``` branch off ```master``` (XXXX is an incremental number used across the repo)
 * Applying the diff to the new branch
 * Merging the branch to ```staging```, using a non-fast-forward merge
 * Merging the branch back to ```master```, again using a non-fast-forward merge
+* Archive the branch (read below)
 
 ##### Archiving Branches
 
