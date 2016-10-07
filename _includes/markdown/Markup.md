@@ -240,6 +240,8 @@ Adding ```tabindex``` to elements to force a different tab order can become conf
 <h3 id="progressive-enhancement">Progressive Enhancement {% include Util/top %}</h3>
 Progressive enhancement means building a website that is robust, fault tolerant, and accessible. Progressive enhancement begins with a baseline experience and builds out from there, adding features for browsers that support them. It does not require us to select supported browsers or revert to table-based layouts. Baselines for browser and device support are set on a project-by-project basis.
 
+We usually follow [Google's approach](https://support.google.com/a/answer/33864?hl=en), which is the latest 2 major versions of each major browser (Chrome, Firefox, IE/Edge, Safari).
+
 At 10up, we employ progressive enhancement to ensure that the sites we build for our clients are accessible to as many users as possible. For example, browser support for SVG has not yet reached 100%. When using SVG you should always provide a fallback such as a PNG image for browsers that do not support vector graphics.
 
 #### Polyfills
