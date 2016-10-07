@@ -10,8 +10,6 @@ subnav:
     tag: philosophy
   - title: HTML5 Structural Elements
     tag: html5-structural-elements
-  - title: Classes and IDs
-    tag: classes-ids
   - title: Accessibility
     tag: accessibility
   - title: Progressive Enhancement

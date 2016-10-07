@@ -68,26 +68,6 @@ Good:
 <div class="featured-image"></div>
 ```
 
-#### Avoid Unnecessary Presentational Markup
-As part of our mission to write clean, semantic markup, avoid writing unnecessary presentational markup. Markup should always dictate what the content is, and CSS should dictate how the content looks. Mixing these two concerns makes maintaining code more difficult.
-
-By using Sass, we're able to better extend our classes within our CSS, allowing us to easily separate concerns between markup and styling. For example, we can ```@extend``` or ```@include``` our grid column sizes as well as media queries to modify the behavior at different sizes so that styles live separately from markup.
-
-This is not to say that multiple classes on an element are unacceptable. Contextual modifier classes are certainly acceptable and encouraged.
-
-##### Examples
-Bad:
-
-```html
-<div class="col-lg-6 col-md-6 col-sm-9 col-xs-12 featured-image"></div>
-```
-Good:
-
-```html
-<nav class="primary-nav"></nav>
-<nav class="primary-nav open"></nav>
-```
-
 #### Schema.org Markup
 [Schema.org](http://schema.org) is the result of collaboration between Google, Bing, Yandex, and Yahoo! to provide the information their search engines need to understand content and provide the best search results possible. Adding Schema markup to your HTML provides search engines with structured data they can use to improve the way pages display in search results.
 
@@ -195,17 +175,6 @@ Good example:
 ```html
 <link rel="stylesheet" href="css/style.css">
 <script src="script/scripts.js"></script>
-```
-
-<h3 id="classes-ids">Classes &amp; IDs {% include Util/top %}</h3>
-In order to create more maintainable projects, developers should use classes for CSS and IDs for JavaScript. Separating concerns allows markup to be more flexible without risking breaking both styles and any JavaScript that may be attached to the element on which someone is working.
-
-When using JavaScript to target specific elements in your markup, prefix the ID of the element that is being targeted with `js-`. This indicates the element is being targeted by JavaScript for your future self as well as other developers that may work on the project.
-
-Example:
-
-```html
-<nav id="js-primary-menu" class="primary-menu"></nav>
 ```
 
 #### Avoid using inline styles or JavaScript
