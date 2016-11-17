@@ -1,13 +1,13 @@
-name:          10up Engineering Best Practices
-title:         10up Engineering Best Practices
-description:   Project engineering best practices used by 10up.
-url:           https://10up.github.io/
+name:          SAU/CAL Engineering Best Practices
+title:         SAU/CAL Engineering Best Practices
+description:   Project engineering best practices used by SAU/CAL.
+url:           https://saucal.github.io/
 baseurl:       /Engineering-Best-Practices
 author:
-  name:    10up
-  email:   sales@10up.com
-  github:  10up
-  twitter: 10up
+  name:    SAU/CAL
+  email:   info@saucal.com
+  github:  saucal
+  twitter: saucal
 
 markdown:      kramdown
 permalink:     pretty

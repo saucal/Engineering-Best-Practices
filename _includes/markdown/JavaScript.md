@@ -1,6 +1,6 @@
 ### Performance
 
-Writing performant code is absolutely critical. Poorly written JavaScript can significantly slow down and even crash the browser. On mobile devices, it can prematurely drain batteries and contribute to data overages. Performance at the browser level is a major part of user experience which is part of the 10up mission statement.
+Writing performant code is absolutely critical. Poorly written JavaScript can significantly slow down and even crash the browser. On mobile devices, it can prematurely drain batteries and contribute to data overages. Performance at the browser level is a major part of user experience which is part of the SAU/CAL mission statement.
 
 #### Only Load Libraries You Need
 
@@ -183,7 +183,7 @@ We conform to the [WordPress JavaScript Documentation Standards](https://make.wo
 
 <h3 id="libraries">Libraries {% include Util/top %}</h3>
 
-There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of primary libraries used by 10up.
+There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of primary libraries used by SAU/CAL.
 
 #### DOM Manipulation
 
