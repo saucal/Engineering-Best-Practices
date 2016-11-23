@@ -63,6 +63,7 @@ Any functions the plugin exposes for use in a theme should be done so through ac
 #### Plugins
 
 We use a fork of the [WordPress Plugin Boilerplate](https://github.com/saucal/WordPress-Plugin-Boilerplate), and we have a tool to generate a plugin folder for each project quickly [here](http://bitcoinlabs.saucal.com:3456/) (instead of you having to perform replaces).
+
 #### Editor Config
 
 Every project should include an Editor Config file, `.editorconfig` in the root directory.
