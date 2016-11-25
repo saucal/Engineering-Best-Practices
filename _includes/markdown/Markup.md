@@ -12,11 +12,14 @@ At SAU/CAL, we pride ourselves in writing clean, semantic markup. Semantic marku
 Semantic elements are elements with clearly defined meaning to both the browser and the developer. Elements like ```<header>```, ```<nav>```, ```<footer>```, or ```<article>``` do a much better job of explaining the content that is contained within the element than ```<span>``` or ```<div>```. This does not mean that we do not use ```<div>```'s in our markup, only that we prefer the right tool (or in this case semantic element) for the job.
 
 
-#### Minimal &amp; Valid
+#### Minimal & Valid
 Websites should be written using the least amount of markup that accomplishes the goal. In the interest of engineering maintainable projects, it's imperative that two completely different types of readers are accounted for: humans and browsers. Writing minimal markup makes it easier for developers to read and understand in a code editor. Valid markup is easier for browsers to process.
 
 We test our markup against the [W3C validator](http://validator.w3.org/) to ensure that it is well formed and provides a fairly consistent experience across browsers.
 
+#### Following WordPress Standards
+
+WordPress Core has [coding standards for HTML](https://make.wordpress.org/core/handbook/best-practices/coding-standards/html/). These should be followed for consistency across projects.
 
 #### Optimize Readability
 At SAU/CAL, we often work with large codebases. As such, it's important to optimize markup for human readability. This allows developers to quickly rotate in and out of projects, eases onboarding processes, and improves code maintainability.
@@ -177,8 +180,10 @@ Good example:
 <script src="script/scripts.js"></script>
 ```
 
+However, you should naturally defer to whatever markup that WordPress generates from when it outputs any scripts or styles that have been enqueued using the dependency system.
+
 #### Avoid using inline styles or JavaScript
-These are not easily maintainable and can be easily lost or cause unforeseen conflicts.
+These are not easily maintainable and can be easily lost or cause unforeseen conflicts. For instance, it is common to add `style="display:none"` to an element. Instead of this, HTML5 actually has a specific boolean semantic attribute for this: `hidden`.
 
 <h3 id="accessibility">Accessibility {% include Util/top %}</h3>
 It's important that our clients and their customers are able to use the products that we create for them. Accessibility means creating a web that is accessible to all people: those with disabilities and those without. We must think about people with visual, auditory, physical, speech, cognitive and neurological disabilities and ensure that we deliver the best experience we possibly can to everyone. Accessibility best practices also make content more easily digestible by search engines. Increasingly, basic accessibility can even be a legal requirement. In all cases, an accessible web benefits everyone.
