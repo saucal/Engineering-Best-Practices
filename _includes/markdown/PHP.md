@@ -2,6 +2,13 @@
 
 Writing performant code is absolutely critical, especially at the enterprise level. There are a number of strategies and best practices we must employ to ensure our code is optimized for high-traffic situations.
 
+There are drastically different constraints when developing a high-traffic Enterprise-scale WordPress site as opposed to a site for a small business hosted on a shared server. High-performance WordPress code imposes additional constraints on what you can and cannot do, and forces you to find optimization paths for your code. A lot of good resources for getting up to speed on Enterprise-scale WordPress development can be found on the [WordPress.com VIP docs](http://vip.wordpress.com/documentation/), since VIP is focused on very high scale WordPress sites:
+
+* [Caching | WordPress VIP Docs](http://vip.wordpress.com/documentation/caching/)
+* [Code Review: What We Look For | WordPress VIP Docs](http://vip.wordpress.com/documentation/code-review-what-we-look-for/)
+* [Best Practices | WordPress VIP Docs](http://vip.wordpress.com/documentation/best-practices/)
+* [VIP Developer Orientation](http://vip.wordpress.com/2014/07/10/vip-developer-orientation/)
+
 #### Efficient Database Queries
 
 When querying the database in WordPress, you should generally use a [```WP_Query```](http://codex.wordpress.org/Class_Reference/WP_Query) object. ```WP_Query``` objects take a number of useful arguments and do things behind-the-scenes that other database access methods such as [```get_posts()```](https://developer.wordpress.org/reference/functions/get_posts/) do not.
@@ -19,16 +26,15 @@ Here are a few key points:
 
 * Do not use ```posts_per_page => -1```.
 
-    This is a performance hazard. What if we have 100,000 posts? This could crash the site. If you are writing a widget, for example, and just want to grab all of a custom post type, determine a reasonable upper limit for your situation.
+    This is a performance hazard. What if we have 100,000 posts? This could crash the site. If you are writing a widget, for example, and just want to grab all of a custom post type, determine a reasonable upper limit for your situation. See [VIP requirement](https://vip.wordpress.com/documentation/code-review-what-we-look-for/#no-limit-queries).
 
-  ```php
-  <?php
-  // Query for 500 posts.
-  new WP_Query( array(
-    'posts_per_page' => 500,
-  ));
-  ?>
-  ```
+    ```php
+    <?php
+    // Query for 100 posts.
+    $query = new WP_Query( array(
+      'posts_per_page' => 100,
+    ));
+    ```
 
 * Do not use ```$wpdb``` or ```get_posts()``` unless you have good reason.
 
@@ -38,14 +44,13 @@ Here are a few key points:
 
     This will tell WordPress not to run ```SQL_CALC_FOUND_ROWS``` on the SQL query drastically speeding up your query. ```SQL_CALC_FOUND_ROWS``` calculates the total number of rows in your query which is required to know the total amount of "pages" for pagination.
 
-  ```php
-  <?php
-  // Skip SQL_CALC_FOUND_ROWS for performance (no pagination).
-  new WP_Query( array(
-    'no_found_rows' => true,
-  ));
-  ?>
-  ```
+    ```php
+    <?php
+    // Skip SQL_CALC_FOUND_ROWS for performance (no pagination).
+    $query = new WP_Query( array(
+      'no_found_rows' => true,
+    ));
+    ```
 
 * Avoid using ```post__not_in```.
 
@@ -53,36 +58,34 @@ Here are a few key points:
 
     Use :
 
-  ```php
-  <?php
-  $foo_query = new WP_Query( array(
-      'post_type' => 'post',
-      'posts_per_page' => 30 + count( $posts_to_exclude )
-  ) );
+    ```php
+    <?php
+    $foo_query = new WP_Query( array(
+        'post_type' => 'post',
+        'posts_per_page' => 30 + count( $posts_to_exclude )
+    ) );
 
-  if ( $foo_query->have_posts() ) :
-      while ( $foo_query->have_posts() ) :
-          $foo_query->the_post();
-          if ( in_array( get_the_ID(), $posts_to_exclude ) ) {
-              continue;
-          }
-          the_title();
-      endwhile;
-  endif;
-  ?>
-  ```
+    if ( $foo_query->have_posts() ) :
+        while ( $foo_query->have_posts() ) :
+            $foo_query->the_post();
+            if ( in_array( get_the_ID(), $posts_to_exclude ) ) {
+                continue;
+            }
+            the_title();
+        endwhile;
+    endif;
+    ```
 
     Instead of:
 
-  ```php
-  <?php
-  $foo_query = new WP_Query( array(
-      'post_type' => 'post',
-      'posts_per_page' => 30,
-      'post__not_in' => $posts_to_exclude
-  ) );
-  ?>
-  ```
+    ```php
+    <?php
+    $foo_query = new WP_Query( array(
+        'post_type' => 'post',
+        'posts_per_page' => 30,
+        'post__not_in' => $posts_to_exclude
+    ) );
+    ```
 
     See [WordPress VIP](https://vip.wordpress.com/documentation/performance-improvements-by-removing-usage-of-post__not_in/).
 
@@ -105,15 +108,14 @@ Here are a few key points:
 
     Here is an example of a 2-dimensional query:
 
-  ```php
-  <?php
-  // Query for posts with both a particular category and tag.
-  new WP_Query( array(
-    'category_name' => 'cat-slug',
-    'tag' => 'tag-slug',
-  ));
-  ?>
-  ```
+    ```php
+    <?php
+    // Query for posts with both a particular category and tag.
+    $query = new WP_Query( array(
+      'category_name' => 'cat-slug',
+      'tag' => 'tag-slug',
+    ));
+    ```
 
 ##### WP\_Query vs. get\_posts() vs. query\_posts()
 As outlined above, `get_posts()` and `WP_Query`, apart from some slight nuances, are quite similar. Both have the same performance cost (minus the implication of skipping filters): the query performed.
@@ -162,8 +164,6 @@ In WordPress, the object cache functionality provided by [```WP_Object_Cache```]
 
 On a regular WordPress install, the difference between transients and the object cache is that transients are persistent and would write to the options table, while the object cache only persists for the particular page load.
 
-It is possible to create a transient that will never expire by omitting the third parameter, this should be avoided as any non-expiring transients are autoloaded on every page and you may actually decrease performance by doing so.
-
 On environments with a persistent caching mechanism (i.e. [Memcache](http://memcached.org/), [Redis](http://redis.io/), or similar) enabled, the transient functions become wrappers for the normal ```WP_Object_Cache``` functions. The objects are identically stored in the object cache and will be available across page loads.
 
 Note: as the objects are stored in memory, you need to consider that these objects can be cleared at any time and that your code must be constructed in a way that it would not rely on the objects being in place.
@@ -194,7 +194,6 @@ function prefix_get_top_commented_posts() {
     }
     return $top_commented_posts;
 }
-?>
 ```
 
 In the above example, the cache is checked for an object with the 10 most commented posts and would generate the list in case the object is not in the cache yet. Generally, calls to ```WP_Query``` other than the main query should be cached.
@@ -250,7 +249,6 @@ function prefix_get_top_commented_posts( $force_refresh = false ) {
     }
     return $top_commented_posts;
 }
-?>
 ```
 
 With this implementation, you can keep the cache object forever and don't need to add an expiration for the object as you would create a new cache entry whenever it is required. Just keep in mind that some external caches (like Memcache) can invalidate cache objects without any input from WordPress.
@@ -314,7 +312,6 @@ function prefix_do_api() {
 	}
 }
 add_action( 'template_redirect', 'prefix_do_api' );
-?>
 ```
 
 ##### Cache Remote Requests
@@ -340,7 +337,6 @@ function prefix_get_posts_from_other_blog() {
     }
     return $posts;
 }
-?>
 ```
 
 ```prefix_get_posts_from_other_blog()``` can be called to get posts from a third-party and will handle caching internally.
@@ -369,7 +365,7 @@ Writing information to the database is at the core of any website you build. Her
 
 * Store information in the correct place. See the "[Appropriate Data Storage](#appropriate-data-storage)" section.
 
-* Certain options are "autoloaded" or put into the object cache on each page load. When [creating or updating options](http://codex.wordpress.org/Options_API), you can pass an ```$autoload``` argument to [```add_option()```](https://developer.wordpress.org/reference/functions/add_option/). If your option is not going to get used often, it probably shouldn't be autoloaded. Unfortunately, [```update_option()```](https://developer.wordpress.org/reference/functions/update_option/) automatically sets ```autoload``` to ```true``` so you have to use a combination of [```delete_option()```](https://developer.wordpress.org/reference/functions/delete_option/) and ```add_option()``` to accomplish this.
+* Certain options are "autoloaded" or put into the object cache on each page load. When [creating or updating options](http://codex.wordpress.org/Options_API), you can pass an ```$autoload``` argument to [```add_option()```](https://developer.wordpress.org/reference/functions/add_option/) or [```update_option()```](https://developer.wordpress.org/reference/functions/update_option/). Beware that all options are forcibly autoloaded on WordPress.com, and the sum of all options cannot exceed 1MB or the site will crash. VIP will warn you if the sum of options reaches 750KB. Be careful with widgets on WordPress.com since they are stored in options by default (see [Widget Posts functionality](https://wordpress.org/plugins/customize-widgets-plus/)).
 
 <h3 id="design-patterns">Design Patterns {% include Util/top %}</h3>
 
@@ -491,36 +487,7 @@ In terms of [Object-Oriented Programming](http://en.wikipedia.org/wiki/Object-or
 * Class inheritance should be used where possible to produce [DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself) code and share previously-developed components throughout the application.
 * Global variables should be avoided. If objects need to be passed throughout the theme or plugin, those objects should either be passed as parameters or referenced through an object factory.
 * Hidden dependencies (API functions, super-globals, etc) should be documented in the docblock of every function/method or property.
-* Avoid registering hooks in the __construct method. Doing so tightly couples the hooks to the instantiation of the class and is less flexible than registering the hooks via a separate method. Unit testing becomes much more difficult as well.
-
-#### Decouple Plugin and Theme using add_theme_support
-
-The implementation of a custom plugin should be decoupled from its use
-in a Theme. Disabling the plugin should not result in any errors in the
-Theme code. Similarly switching the Theme should not result in any
-errors in the Plugin code.
-
-The best way to implement this is with the use of [add_theme_support](https://developer.wordpress.org/reference/functions/add_theme_support/) and [current_theme_supports](https://codex.wordpress.org/Function_Reference/current_theme_supports).
-
-Consider a plugin that adds a custom javascript file to the `page` post
-type. The Theme should register support for this feature using
-`add_theme_support`,
-
-```php
-<?php
-add_theme_support( 'custom-js-feature' );
-```
-
-And the plugin should check that the current theme has indicated support
-for this feature before adding the script to the page, using
-[current_theme_supports](https://codex.wordpress.org/Function_Reference/current_theme_supports),
-
-```php
-<?php
-if ( current_theme_supports( 'custom-js-feature' ) ) {
-	// ok to add custom js
-}
-```
+* Avoid registering hooks in the `__construct` method. Doing so tightly couples the hooks to the instantiation of the class and is less flexible than registering the hooks via a separate method. Unit testing becomes much more difficult as well.
 
 #### Asset Versioning
 It's always a good idea to keep assets versioned, to make cache busting a simpler process when deploying new code. Fortunately, [wp_register_script](https://developer.wordpress.org/reference/functions/wp_register_script/) and [wp_register_style](https://developer.wordpress.org/reference/functions/wp_register_style/) provide a built-in API that allows engineers to declare an asset version, which is then appended to the file name as a query string when the asset is loaded.
@@ -555,11 +522,8 @@ Here's an example of validating an integer stored in post meta:
 ```php
 <?php
 if ( ! empty( $_POST['user_id'] ) ) {
-    if ( absint( $_POST['user_id'] ) === $_POST['user_id'] ) {
-        update_post_meta( $post_id, 'key', absint( $_POST['user_id'] ) );
-    }
+    update_post_meta( $post_id, 'key', absint( $_POST['user_id'] ) );
 }
-?>
 ```
 
 ```$_POST['user_id']``` is validated using [```absint()```](https://developer.wordpress.org/reference/functions/absint/) which ensures an integer >= 0. Without validation (or sanitization), ```$_POST['user_id']``` could be used maliciously to inject harmful code or data into the database.
@@ -571,7 +535,6 @@ Here is an example of sanitizing a text field value that will be stored in the d
 if ( ! empty( $_POST['special_heading'] ) ) {
     update_option( 'option_key', sanitize_text_field( $_POST['special_heading'] ) );
 }
-?>
 ```
 
 Since ```update_option()``` is storing in the database, the value must be sanitized (or validated). The example uses the [```sanitize_text_field()```](https://developer.wordpress.org/reference/functions/sanitize_text_field/) function, which is appropriate for sanitizing general text fields.
@@ -586,8 +549,10 @@ Special care must be taken to ensure queries are properly prepared and sanitized
 <?php
 global $wpdb;
 
-$wpdb->get_results( $wpdb->prepare( "SELECT id, name FROM $wpdb->posts WHERE ID='%d'", absint( $post_id ) ) );
-?>
+$wpdb->get_results( $wpdb->prepare(
+    "SELECT id, name FROM $wpdb->posts WHERE ID = %d",
+    absint( $post_id )
+) );
 ```
 
 ```$wpdb->prepare()``` behaves like ```sprintf()``` and essentially calls ```mysqli_real_escape_string()``` on each argument. ```mysqli_real_escape_string()``` escapes characters like ```'``` and ```"``` which prevents many SQL injection attacks.
@@ -599,9 +564,11 @@ Here is another example:
 ```php
 <?php
 global $wpdb;
-
-$wpdb->insert( $wpdb->posts, array( 'post_content' => wp_kses_post( $post_content ), array( '%s' ) );
-?>
+$wpdb->insert(
+    $wpdb->posts,
+    array( 'post_content' => wp_kses_post( $post_content ),
+    array( '%s' ),
+) );
 ```
 
 ```$wpdb->insert()``` creates a new row in the database. ```$post_content``` is being passed into the ```post_content``` column. The third argument lets us specify a format for our values ```sprintf()``` style. Forcing the value to be a string using the ```%s``` specifier prevents many SQL injections attacks. However, ```wp_kses_post()``` still needs to be called on ```$post_content``` as someone could inject harmful JavaScript otherwise.
@@ -668,7 +635,7 @@ If you need to escape such that HTML is permitted (but not harmful JavaScript), 
 </div>
 ```
 
-```wp_kses_*``` functions should be used sparingly as they have bad performance due to a large number of regular expression matching attempts. If you find yourself using ```wp_kses_*```, it's worth evaluating what you are doing as whole.
+```wp_kses_*``` functions should be used sparingly as they have bad performance due to a large number of regular expression matching attempts. If you find yourself using ```wp_kses_*```, it's worth evaluating what you are doing as a whole.
 
 Are you providing a meta box for users to enter arbitrary HTML? Perhaps you can generate the HTML programmatically and provide the user with a few options to customize.
 
@@ -686,7 +653,7 @@ Here's an example:
 
 Instead of using the generic [```__()```](https://developer.wordpress.org/reference/functions/__/) function, something like [```esc_html__()```](https://developer.wordpress.org/reference/functions/esc_html__/) might be more appropriate. Instead of using the generic [```_e()```](https://developer.wordpress.org/reference/functions/_e/) function, [```esc_html_e()```](https://developer.wordpress.org/reference/functions/esc_html_e/) would instead be used.
 
-There are many escaping situations not covered in this section. Everyone should explore the [WordPress codex article](http://codex.wordpress.org/Validating_Sanitizing_and_Escaping_User_Data#Escaping:_Securing_Output) on escaping output to learn more.
+There are many escaping situations not covered in this section. Everyone should explore the [WordPress codex article](http://codex.wordpress.org/Validating_Sanitizing_and_Escaping_User_Data#Escaping:_Securing_Output) on escaping output to learn more. See also  VIP's [The Importance of Escaping All The Things](https://vip.wordpress.com/2014/06/20/the-importance-of-escaping-all-the-things/). Also, be sure that your PHP_CodeSniffer ruleset includes the `WordPress.XSS.EscapeOutput` rule since it can help catch many areas where late-escaping is not being followed.
 
 #### Nonces
 
@@ -722,10 +689,9 @@ When the form request is processed, the nonce must be verified:
 ```php
 <?php
 // Verify the nonce to continue.
-if ( ! empty( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'my_action_name' ) ) {
+if ( ! check_ajax_referer( 'my_action_name', '_wpnonce', false ) ) {
     // Nonce is valid!
 }
-?>
 ```
 
 <h3 id="code-style">Code Style & Documentation {% include Util/top %}</h3>
@@ -780,18 +746,7 @@ function protect_post_meta( $protected, $current_meta_key ) {
     // Return the (possibly) modified $protected variable
     return $protected;
 }
-?>
 ```
-
-<h3 id="unit-testing">Unit and Integration Testing {% include Util/top %}</h3>
-
-Unit testing is the automated testing of units of source code against certain assertions. The goal of unit testing is to write test cases with assertions that test if a unit of code is truly working as intended. If an assertion fails, a potential issue is exposed, and code needs to be revised.
-
-By definition, unit tests do not have dependencies on outside systems; in other words, only your code (a single unit of code) is being tested. Integration testing works similarly to unit tests but assumptions are tested against systems of code, moving parts, or an entire application. The phrases unit testing and integration testing are often misused to reference one another especially in the context of WordPress.
-
-At SAU/CAL, we generally employ unit and integration tests only when building applications that are meant to be distributed. Building tests for client themes does usually not offer a huge amount of value (there are of course exceptions to this). When we do write tests, we use PHPUnit which is the WordPress standard library.
-
-Read more at the [PHPUnit homepage](https://phpunit.de/) and [automated testing for WordPress](http://make.wordpress.org/core/handbook/automated-testing/)
 
 <h3 id="libraries">Libraries and Frameworks {% include Util/top %}</h3>
 
