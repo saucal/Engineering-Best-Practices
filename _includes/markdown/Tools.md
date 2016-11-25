@@ -1,5 +1,12 @@
 The following are the tools we use at SAU/CAL. This list will grow and change over time and is not meant to be comprehensive. Generally, we encourage or require these tools to be used in favor of other ones. Rules governing tools to be used and packaged with a client site will be much stricter than those used on internal projects.
 
+### Code Checkers
+
+* **[PHP_CodeSniffer WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)** for [PHP coding standards](../php/#code-style).
+* **[PHP MD](http://phpmd.org/) ([experimental](https://github.com/xwp/wp-dev-lib/issues/4))** for higher-level [PHP coding checks](../php/#code-style).
+* **[JSHint](http://jshint.com/)** for basic [code style](../javascript/#code-style) reporting.
+* **[JSCS](http://jscs.info/)** for comprehensive [code style](../javascript/#code-style) reporting and fixing.
+
 <h3 id="local-development">Local Development Environments</h3>
 
 At SAU/CAL, we use [Vagrant](https://www.vagrantup.com/) to build and interact with virtual environments that match production as closely as possible. There are many different Vagrant setups and configurations available. The following setups are the only ones we support internally.
@@ -135,7 +142,9 @@ You can pretty much follow the installation process detailed [here](https://gith
 
 <h3 id="task-runners">Task Runners {% include Util/top %}</h3>
 
-[Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification. Grunt is the only task runner we currently use on company and client projects.
+[Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification.
+
+[Gulp](http://gulpjs.com/) - Another task runner also built on Node which is a newer alternative to Grunt. See [comparison](https://medium.com/@preslavrachev/gulp-vs-grunt-why-one-why-the-other-f5d3b398edc4).
 
 <h3 id="package-managers">Package/Dependency Managers</h3>
 
@@ -145,7 +154,11 @@ You can pretty much follow the installation process detailed [here](https://gith
 
 <h3 id="version-control">Version Control {% include Util/top %}</h3>
 
-[Git](http://git-scm.com) - At SAU/CAL we use Git for version control. We encourage people to use the command line for interacting with Git. GUI’s are permitted but will not be supported internally.
+[Git](http://git-scm.com) - We use Git for version control. It is _critical_ that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to use the command line for interacting with Git. GUI’s are permitted but will not be supported internally. For more information on Git:
+
+* [Hello World | GitHub Guides](https://guides.github.com/activities/hello-world/)
+* [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
+* [Forking Projects | GitHub Guides](https://guides.github.com/activities/forking/)
 
 [SVN](https://subversion.apache.org/) - We use SVN, but only in the context of WordPress.com VIP. Again, we encourage people to use the command line as we do not support GUI's internally.
 
