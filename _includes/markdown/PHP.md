@@ -151,7 +151,6 @@ if ( isset( $array['bar'] ) ) {
 
 In case you don't have control over the array creation process and are forced to use `in_array()`, to improve the performance slightly, you should always set the third parameter to `true` to force use of strict comparison.
 
-
 #### Caching
 
 Caching is simply the act of storing computed data somewhere for later use, and is an incredibly important concept in WordPress. There are different ways to employ caching, and often multiple methods will be used.
@@ -373,42 +372,14 @@ Using a common set of design patterns while working with PHP code is the easiest
 
 #### Namespacing
 
-We properly namespace all PHP code outside of theme templates. This means any PHP file that isn't part of the [WordPress Template Hierarchy](https://developer.wordpress.org/themes/basics/template-hierarchy/) should be organized within a namespace or _pseudo_ namespace so its contents don't conflict with other, similarly-named classes and functions ("namespace collisions").
-
-Generally, this means including a PHP ```namespace``` identifier at the top of included files:
+All functional code should be properly namespaced. We do this to logically organize our code and to prevent collisions in the global namespace. Generally, this means using a PHP ```namespace``` identifier at the top of included files:
 
 ```php
 <?php
-namespace TenUp\Buy_N_Large\Wall_E;
+namespace Saucal\Utilities\API;
 
 function do_something() {
   // ...
-}
-```
-
-A namespace identifier consists of a _top-level_ namespace or "Vendor Name", which is usually ```TenUp``` for our projects. We follow the top-level name with a project name, usually a client's name. ex: ```TenUp\Buy_N_Large;```
-
-Additional levels of namespace are defined at discretion of the project's lead engineers. Around the time of a project's kickoff, they agree on a strategy for namespacing the project's code. For example, the client's name may be followed with the name of a particular site or high-level project we're building (```TenUp\Buy_N_Large\Wall_E;```).
-
-When SAU/CAL works on more than one project for a client and we build common plugins shared between sites, "Common" might be used in place of the project name to signal this code's relationship to the rest of the codebase.
-
-The engineering leads document this strategy so it can be shared with engineers brought onto the project throughout its lifecycle.
-
-[```use``` declarations](http://php.net/manual/en/language.namespaces.importing.php) should be used for classes outside a file's namespace. By declaring the full namespace of a class we want to use *once* at the top of the file, we can refer to it by just its class name, making code easier to read. It also documents a file's dependencies for future developers.
-
-```php
-<?php
-/**
- * Example of a 'use' declaration
- */
-namespace TenUp\Buy_N_Large\Wall_E;
-use TenUp\Buy_N_Large\Common\TwitterAPI;
-
-function do_something() {
-  // Hard to read
-  $twitter_api = new TenUp\Buy_N_Large\Common\TwitterAPI();
-  // Preferred
-  $twitter_api = new TwitterAPI();
 }
 ```
 
@@ -419,7 +390,7 @@ If the code is for general release to the WordPress.org theme or plugin reposito
 /**
  * Namespaced class name example.
  */
-class Tenup_Utilities_API {
+class Saucal_Utilities_API {
 	public static function do_something() {
 		// ...
 	}
@@ -428,7 +399,7 @@ class Tenup_Utilities_API {
 
 The similar structure of the namespace and the static class will allow for simple onboarding to either style of project (and a quick upgrade to PHP namespaces if and when WordPress raises its minimum version requirements).
 
-Anything declared in the global namespace, including a namespace itself, should be written in such a way as to ensure uniqueness. A namespace like ```TenUp``` is (most likely) unique; ```theme``` is not. A simple way to ensure uniqueness is to prefix a declaration with unique prefix.
+Anything declared in the global namespace, including a namespace itself, should be written in such a way as to ensure uniqueness. A namespace like ```Saucal``` is (most likely) unique; ```theme``` is not. A simple way to ensure uniqueness is to prefix a declaration with unique prefix.
 
 #### Object Design
 
@@ -600,26 +571,14 @@ Here is another example:
 Here is another example:
 
 ```php
-<input type="text" onfocus="if( this.value == '<?php echo esc_js( $fields['input_text'] ); ?>' ) { this.value = ''; }" name="name">
-```
-
-[```esc_js()```](https://developer.wordpress.org/reference/functions/esc_js/) ensures that whatever is returned is safe to be printed within a JavaScript string. This function is intended to be used for inline JS, inside a tag attribute  (onfocus="...", for example).
-
-We should not be writing JavaScript inside tag attributes anymore, this means that ```esc_js()``` should never be used. To escape strings for JS another function should be used.
-
-Here is another example:
-
-```php
 <script>
 if ( document.cookie.indexOf( 'cookie_key' ) >= 0 ) {
-document.getElementById( 'test' ).getAttribute( 'href' ) = <?php echo wp_json_encode( get_post_meta( $post_id, 'key', true ) ); ?>;
+    document.getElementById( 'test' ).getAttribute( 'href' ) = '<?php echo esc_js( get_post_meta( $post_id, 'key', true ) ); ?>';
 }
 </script>
 ```
 
-[```wp_json_encode()```](https://developer.wordpress.org/reference/functions/wp_json_encode/) ensures that whatever is returned is safe to be printed in your JavaScript code. It returns a JSON encoded string.
-
-Note that ```wp_json_encode()``` includes the string-delimiting quotes for you.
+[```esc_js()```](https://developer.wordpress.org/reference/functions/esc_js/) ensures that whatever is returned is safe to be printed within a JavaScript string.
 
 Sometimes you need to escape data that is meant to serve as an attribute. For that, you can use ```esc_attr()``` to ensure output only contains characters appropriate for an attribute:
 
@@ -696,7 +655,9 @@ if ( ! check_ajax_referer( 'my_action_name', '_wpnonce', false ) ) {
 
 ### Code Style & Documentation
 
-We follow the official WordPress [coding](http://make.wordpress.org/core/handbook/coding-standards/php/) and [documentation](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/) standards. The [WordPress Coding Standards for PHP_CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) will find many common violations and flag risky code for manual review.
+We follow the official WordPress [coding](http://make.wordpress.org/core/handbook/coding-standards/php/) and [documentation](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/) standards.
+
+The [WordPress Coding Standards for PHP_CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) will find many common violations and flag risky code for manual review.
 
 We highly value verbose commenting/documentation throughout any/all code, with an emphasis on docblock long descriptions which state 'why' the code is there and 'what' exactly the code does in human-readable prose. As a general rule of thumb; a manager should be able to grok your code by simply reading the docblock and inline comments.
 
