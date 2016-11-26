@@ -1,6 +1,48 @@
-<h3 id="integrations">Third-Party Integrations</h3>
+### Modular Code
 
-Any and all third-party integrations need to be documented in an `INTEGRATIONS.md` file at the root of the project repository. This file includes a list of third-party services, which components of the project those services power, how the project interacts with the remote APIs, and when the interaction is triggered. An integration that could result in unexpected consequences during something like a migration (such as sending out a tweet) should be clearly documented (see [Migration](/Engineering-Best-Practices/migrations/) section).
+Every project-whether a plugin, a theme, or a standalone library—should be coded to be reusable and modular. The line between a theme and a plugin is often fuzzy in the WordPress community, but there should be a clear distinction between the two.
+
+#### Themes
+
+Themes should only handle presentation: templates, layouts, styles, and configuration (registering sidebars, menu locations, theme support, etc).
+
+Any theme dependencies on functionality plugins should be built with the use of `do_action()` or `apply_filters()`. Changing to the default theme should not trigger errors on a site; the theme can function when the functionality plugin is disabled, broken, or missing. Nor should disabling a functionality plugin - every piece of code should be decoupled and use standard WordPress paradigms (hooks) for interacting with one another.
+
+Any logic in the theme's `functions.php` should be simple and directly related to presentation; any other logic should be put into a plugin (e.g. post types, taxonomies, rewrite rules).
+
+#### Plugins
+
+A site's custom functionality should be provided by plugins. Plugins should be as generic and reusable as possible. Plugins should do one thing and do them well.
+
+Each plugin should operate within its own namespace, both in terms of code isolation and in terms of internationalization.
+
+Plugins should be standalone yet extensible. Plugins should provide extension hooks that allow other plugins to build upon their functionality. As such, plugins can have dependencies, although they should not cause an error if activated without the dependent plugin being active.
+
+Any functions the plugin exposes for use in a theme should be done so through actions and filters - the plugin should contain multiple calls to `add_filter()` and `add_action()` as the hooks themselves will be defined in the theme.
+
+### File Organization
+
+#### Themes
+
+Every theme directory, should have this basic structure.
+
+```
+|- assets/
+|  |- images/ ____________________________ # Theme images
+|  |- fonts/ _____________________________ # Custom/hosted fonts
+|  |- js/
+|  |- css/
+|- includes/ _____________________________ # PHP classes and files
+|- languages/ ____________________________ # Translations
+```
+
+#### Plugins
+
+We use a fork of the [WordPress Plugin Boilerplate](https://github.com/saucal/WordPress-Plugin-Boilerplate), and we have a tool to generate a plugin folder for each project quickly [here](http://bitcoinlabs.saucal.com:3456/) (instead of you having to perform replaces).
+
+### Third-Party Integrations
+
+Any and all third-party integrations need to be documented in an `INTEGRATIONS.md` file at the root of the project repository. This file includes a list of third-party services, which components of the project those services power, how the project interacts with the remote APIs, and when the interaction is triggered.
 
 For example:
 
@@ -41,78 +83,3 @@ if ( ! defined( 'CLIENT_MANDRILL_API_KEY' ) && ! ENV_DEVELOPMENT ) {
 The `ENV_DEVELOPMENT` constant should always be set to `true` for local development and should be used whenever and wherever possible to prevent production-only functionality from triggering in a local environment.
 
 The location where other engineers can retrieve developer API keys (i.e. Basecamp thread) can and should be logged in the `INTEGRATIONS.md` file to aid in local testing. Production API keys must _never_ be stored in the repository, neither in text files or hard-coded into the project itself.
-
-<h3 id="modular-code">Modular Code</h3>
-
-Every project, whether a plugin a theme or a standalone library, should be coded to be reusable and modular.
-
-#### Plugins
-
-If the code for a project is split off into a functionality plugin, it should be done in such a way that the theme can function when the functionality plugin is disabled, broken, or missing. Each plugin should operate within its own namespace, both in terms of code isolation and in terms of internationalization.
-
-Any functions the plugin exposes for use in a theme should be done so through actions and filters - the plugin should contain multiple calls to `add_filter()` and `add_action()` as the hooks themselves will be defined in the theme.
-
-#### Themes
-
- Any theme dependencies on functionality plugins should be built with the use of `do_action()` or `apply_filters()`.
-
-**In short,** changing to the default theme should not trigger errors on a site. Nor should disabling a functionality plugin - every piece of code should be decoupled and use standard WordPress paradigms (hooks) for interacting with one another.
-
-<h3 id="file-organization">File Organization {% include Util/top %}</h3>
-
-#### Plugins
-
-We use a fork of the [WordPress Plugin Boilerplate](https://github.com/saucal/WordPress-Plugin-Boilerplate), and we have a tool to generate a plugin folder for each project quickly [here](http://bitcoinlabs.saucal.com:3456/) (instead of you having to perform replaces).
-
-#### Editor Config
-
-Every project should include an Editor Config file, `.editorconfig` in the root directory.
-This file will define and maintain consistent coding styles between the different IDEs and Code Editors used on the project.
-
-All developers should install the corresponding Editor Config plugin for their
-preferred development editor from [EditorConfig.org](http://editorconfig.org/#download).
-
-The editor config file with standard settings for commonly used files is shown below.
-
-```ini
-# This file is for unifying the coding style for different editors and IDEs
-# editorconfig.org
-
-# Rules adapted from WordPress Coding Standards
-# https://make.wordpress.org/core/handbook/coding-standards/
-
-root = true
-
-[*]
-charset = utf-8
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
-indent_style = tab
-indent_size = 4
-
-[{.jshintrc,*.json,*.yml}]
-indent_style = space
-indent_size = 2
-
-[{*.txt,wp-config-sample.php}]
-end_of_line = crlf
-```
-
-Developers may extend and/or customize these rules as new file formats are added to the project.
-
-
-#### Themes
-
-Every theme directory, should have this basic structure.
-
-```
-|- assets/
-|  |- images/ ____________________________ # Theme images
-|  |- fonts/ _____________________________ # Custom/hosted fonts
-|  |- js/
-|  |- css/
-|- includes/ _____________________________ # PHP classes and files
-|- languages/ ____________________________ # Translations
-|- .editorconfig _________________________ # Editor Config settings
-```

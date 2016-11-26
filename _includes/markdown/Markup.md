@@ -1,25 +1,28 @@
 ### Philosophy
-At SAU/CAL, we aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge technologies that may not have widespread browser support. Our markup embodies this approach.
+We aim to create the best possible experience for both our clients and their customers; not for the sake of using cool, bleeding edge technologies that may not have widespread browser support. Our markup embodies this approach.
 
 #### Principles
 Markup is intended to define the structure and outline of a document and to offer semantic structure for the document's contents. Markup should not define the look and feel of the content on the page beyond the most basic structural concepts such as headers, paragraphs, and lists.
 
-At SAU/CAL, our projects are often large and ongoing. As such, it's imperative that we engineer projects to be maintainable. From a markup perspective, we do this by adhering to the following principles:
+Our projects are often large and ongoing. As such, it's imperative that we engineer projects to be maintainable. From a markup perspective, we do this by adhering to the following principles:
 
 #### Semantic
-At SAU/CAL, we pride ourselves in writing clean, semantic markup. Semantic markup can be defined as: "the use of HTML markup to reinforce the semantics, or meaning, of the information in web pages rather than merely to define it's presentation or look. Semantic HTML is processed by traditional web browsers as well as by many other user agents. CSS is used to suggest its presentation to human users" (definition from Wikipedia -[http://en.wikipedia.org/wiki/Semantic_HTML](http://en.wikipedia.org/wiki/Semantic_HTML)).
+We pride ourselves in writing clean, semantic markup. Semantic markup can be defined as: "the use of HTML markup to reinforce the semantics, or meaning, of the information in web pages rather than merely to define it's presentation or look. Semantic HTML is processed by traditional web browsers as well as by many other user agents. CSS is used to suggest its presentation to human users" (definition from Wikipedia -[http://en.wikipedia.org/wiki/Semantic_HTML](http://en.wikipedia.org/wiki/Semantic_HTML)).
 
 Semantic elements are elements with clearly defined meaning to both the browser and the developer. Elements like ```<header>```, ```<nav>```, ```<footer>```, or ```<article>``` do a much better job of explaining the content that is contained within the element than ```<span>``` or ```<div>```. This does not mean that we do not use ```<div>```'s in our markup, only that we prefer the right tool (or in this case semantic element) for the job.
 
 
-#### Minimal &amp; Valid
+#### Minimal & Valid
 Websites should be written using the least amount of markup that accomplishes the goal. In the interest of engineering maintainable projects, it's imperative that two completely different types of readers are accounted for: humans and browsers. Writing minimal markup makes it easier for developers to read and understand in a code editor. Valid markup is easier for browsers to process.
 
 We test our markup against the [W3C validator](http://validator.w3.org/) to ensure that it is well formed and provides a fairly consistent experience across browsers.
 
+#### Following WordPress Standards
+
+WordPress Core has [coding standards for HTML](https://make.wordpress.org/core/handbook/best-practices/coding-standards/html/). These should be followed for consistency across projects.
 
 #### Optimize Readability
-At SAU/CAL, we often work with large codebases. As such, it's important to optimize markup for human readability. This allows developers to quickly rotate in and out of projects, eases onboarding processes, and improves code maintainability.
+We often work with large codebases. As such, it's important to optimize markup for human readability. This allows developers to quickly rotate in and out of projects, eases onboarding processes, and improves code maintainability.
 
 Always use tabs for indentation. Doing this allows developers to set their editor preferences for tab width.
 
@@ -117,7 +120,7 @@ Good:
 </div>
 ```
 
-<h3 id="html5-structural-elements">HTML5 Structural Elements {% include Util/top %}</h3>
+### HTML5 Structural Elements
 HTML5 structural elements allow us to create a more semantic and descriptive codebase and are used in all of our projects. Instead of using ```<div>```s for everything, we can use HTML5 elements like ```<header>```, ```<footer>```, and ```<article>```. They work the same way, in that they're all block level elements, but improve readability and thus maintainability.
 
 There are a few common pitfalls to avoid with HTML structural elements. Not everything is a ```<section>```. The element represents a generic document or application section and should contain a heading.
@@ -177,13 +180,15 @@ Good example:
 <script src="script/scripts.js"></script>
 ```
 
-#### Avoid using inline styles or JavaScript
-These are not easily maintainable and can be easily lost or cause unforeseen conflicts.
+However, you should naturally defer to whatever markup that WordPress generates from when it outputs any scripts or styles that have been enqueued using the dependency system.
 
-<h3 id="accessibility">Accessibility {% include Util/top %}</h3>
+#### Avoid using inline styles or JavaScript
+These are not easily maintainable and can be easily lost or cause unforeseen conflicts. For instance, it is common to add `style="display:none"` to an element. Instead of this, HTML5 actually has a specific boolean semantic attribute for this: `hidden`.
+
+### Accessibility
 It's important that our clients and their customers are able to use the products that we create for them. Accessibility means creating a web that is accessible to all people: those with disabilities and those without. We must think about people with visual, auditory, physical, speech, cognitive and neurological disabilities and ensure that we deliver the best experience we possibly can to everyone. Accessibility best practices also make content more easily digestible by search engines. Increasingly, basic accessibility can even be a legal requirement. In all cases, an accessible web benefits everyone.
 
-At minimum, every SAU/CAL project should make use of ARIA Landmark roles, semantic headings, and alt text on images. Compliance with Section 508, or other international accessibility laws and guidelines, may be required depending upon the project.
+At minimum, every project should make use of ARIA Landmark roles, semantic headings, and alt text on images. Compliance with Section 508, or other international accessibility laws and guidelines, may be required depending upon the project.
 
 We draw much of our information from two prominent accessibility guides: [WCAG (Web Content Accessibility Guidelines)](http://www.w3.org/WAI/intro/wcag) and [Section 508](http://www.section508.gov/).
 
@@ -237,17 +242,17 @@ Finally, we should ensure that all interactive elements are keyboard (or tab) na
 
 Adding ```tabindex``` to elements to force a different tab order can become confusing to users and a maintenance issue to developers if/when they have to make changes to the markup. There are cases, however, when we need to add or remove certain elements from the tab order. In these cases, set ```tabindex="0"``` to allow an element (eg. a ```<div>```) to receive focus in its natural order, or set ```tabindex="-1"``` to skip an element (eg. a modal dialog box).
 
-<h3 id="progressive-enhancement">Progressive Enhancement {% include Util/top %}</h3>
+### Progressive Enhancement
 Progressive enhancement means building a website that is robust, fault tolerant, and accessible. Progressive enhancement begins with a baseline experience and builds out from there, adding features for browsers that support them. It does not require us to select supported browsers or revert to table-based layouts. Baselines for browser and device support are set on a project-by-project basis.
 
 We usually follow [Google's approach](https://support.google.com/a/answer/33864?hl=en), which is the latest 2 major versions of each major browser (Chrome, Firefox, IE/Edge, Safari).
 
-At SAU/CAL, we employ progressive enhancement to ensure that the sites we build for our clients are accessible to as many users as possible. For example, browser support for SVG has not yet reached 100%. When using SVG you should always provide a fallback such as a PNG image for browsers that do not support vector graphics.
+We employ progressive enhancement to ensure that the sites we build for our clients are accessible to as many users as possible. For example, browser support for SVG has not yet reached 100%. When using SVG you should always provide a fallback such as a PNG image for browsers that do not support vector graphics.
 
 #### Polyfills
 When writing markup that does not have wide browser support, using polyfills can help bring that functionality to those older browsers. Providing support for older browsers is incredibly important to the business objectives of our clients. In an effort to prevent code bloat, we only provide polyfills for features that are functionally critical to a site.
 
 #### Modernizr
-At SAU/CAL, we use Modernizr to test browser support for new features that do not yet have full support across the board. Note that you should never use the Development build of Modernizr on a Production site. Create a custom build of Modernizr that features only the tests that are necessary.
+We use Modernizr to test browser support for new features that do not yet have full support across the board. Note that you should never use the Development build of Modernizr on a Production site. Create a custom build of Modernizr that features only the tests that are necessary.
 
 Included in Modernizr is HTML5Shiv. HTML5Shiv is important because HTML5 elements are not natively recognized by IE8 and other older browsers. Thus scripting support for older browsers can be provided with this fairly lightweight JavaScript library.

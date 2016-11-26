@@ -1,10 +1,10 @@
 ### Performance
 
-Writing performant code is absolutely critical. Poorly written JavaScript can significantly slow down and even crash the browser. On mobile devices, it can prematurely drain batteries and contribute to data overages. Performance at the browser level is a major part of user experience which is part of the SAU/CAL mission statement.
+Writing performant code is absolutely critical. Poorly written JavaScript can significantly slow down and even crash the browser. On mobile devices, it can prematurely drain batteries and contribute to data overages. Performance at the browser level is a major part of user experience.
 
 #### Only Load Libraries You Need
 
-JavaScript libraries should only be loaded on the page when needed. jquery-1.11.1.min.js is 96 KB. This isn't a huge deal on desktop but can add up quickly on mobile when we start adding a bunch of libraries. Loading a large number of libraries also increases the chance of conflictions.
+JavaScript libraries should only be loaded on the page when needed. `jquery-1.11.1.min.js` is 96 KB. This isn't a huge deal on desktop but can add up quickly on mobile when we start adding a bunch of libraries. Loading a large number of libraries also increases the chance of conflicts.
 
 #### Use jQuery Wisely
 
@@ -89,18 +89,8 @@ Without jQuery:
 
 ```javascript
 document.getElementById( 'menu' ).addEventListener( 'click', function( event ) {
-    var currentTarget = event.currentTarget;
-    var target = event.target;
-
-    if ( currentTarget && target ) {
-      if ( 'LI' === target.nodeName ) {
-        // Do stuff with target!
-      } else {
-        while ( currentTarget.contains( target ) ) {
-          // Do stuff with a parent.
-          target = target.parentNode;
-        }
-      }
+    if( event.target && event.target.nodeName === 'LI' ) {
+        // Do stuff!
     }
 });
 ```
@@ -115,7 +105,7 @@ jQuery( '#menu' ).on( 'click', 'li', function() {
 
 The non-jQuery method is as usual [more performant](http://jsperf.com/jquery-vs-non-jquery-event-delegation). You may be wondering why we don't just add one listener to ```<body>``` for all our events. Well, we want the event to *bubble up the DOM as little as possible* for [performance reasons](http://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
 
-<h3 id="design-patterns">Design Patterns {% include Util/top %}</h3>
+### Design Patterns
 
 Standardizing the way we structure our JavaScript allows us to collaborate more effectively with one another. Using intelligent design patterns improves maintainability, code readability, and even helps to prevent bugs.
 
@@ -152,6 +142,39 @@ window.console.log( typeof window.i !== 'undefined' ); // false
 
 Notice how ```i``` was not exposed to the ```window``` object.
 
+A common pattern for encapsulating some JS functionality is:
+
+```javascript
+/* global _fooExports */
+/* exported Foo */
+var Foo = (function( $ ) {
+
+	var self = {
+		bar: 1,
+		baz: 2
+	};
+	if ( 'undefined' !== typeof _fooExports ) {
+		$.extend( self, _fooExports );
+	}
+
+	self.init = function( config ) {
+		$.extend( self, config || {} );
+		/* ... */
+	};
+
+	// Bootstrap when DOM ready.
+	$( function() {
+		self.init();
+	} );
+
+	return self;
+})( jQuery );
+```
+
+The `_fooExports` is a variable which is exported from PHP by `wp_localize_script()` (or the like).
+
+Note that it is better if the bootstrap is not done here but rather is decoupled by `Foo.init()` being called elsewhere.
+
 #### Use Modern Functions, Methods, and Properties
 
 It's important we use language features that are intended to be used. This means not using deprecated functions, methods, or properties. Whether we are using a JavaScript or a library such as jQuery or Underscore, we should not use deprecated features. Using deprecated features can have negative effects on performance, security, maintainability, and compatibility.
@@ -175,15 +198,17 @@ jQuery( '.menu' ).on( 'click', function() {
 Another example in JavaScript is ```escape()``` and ```unescape()```. These functions were deprecated. Instead we should use ```encodeURI()```, ```encodeURIComponent()```, ```decodeURI()```, and ```decodeURIComponent()```.
 
 
-<h3 id="code-style">Code Style & Documentation {% include Util/top %}</h3>
+### Code Style & Documentation
 
 We conform to [WordPress JavaScript coding standards](http://make.wordpress.org/core/handbook/coding-standards/javascript/).
 
 We conform to the [WordPress JavaScript Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/).
 
-<h3 id="libraries">Libraries {% include Util/top %}</h3>
+Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate checks for coding standards violations; note that JSCS also supports [automatically-fixing](http://jscs.info/overview#cli) some of the issues it identifies. Include the [`.jshintrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jshintrc) and [`.jscsrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jscsrc) from [wp-dev-lib](https://github.com/xwp/wp-dev-lib) into your theme/plugin/site repo to configure these linters; these tools can then be run automatically by the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis).
 
-There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of primary libraries used by SAU/CAL.
+### Libraries
+
+There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of commonly-used libraries used:
 
 #### DOM Manipulation
 
