@@ -1,4 +1,4 @@
-<h3 id="modular-code">Modular Code</h3>
+### Modular Code
 
 Every project-whether a plugin, a theme, or a standalone library—should be coded to be reusable and modular. The line between a theme and a plugin is often fuzzy in the WordPress community, but there should be a clear distinction between the two.
 
@@ -20,7 +20,7 @@ Plugins should be standalone yet extensible. Plugins should provide extension ho
 
 Any functions the plugin exposes for use in a theme should be done so through actions and filters - the plugin should contain multiple calls to `add_filter()` and `add_action()` as the hooks themselves will be defined in the theme.
 
-<h3 id="file-organization">File Organization {% include Util/top %}</h3>
+### File Organization
 
 #### Themes
 
@@ -40,7 +40,7 @@ Every theme directory, should have this basic structure.
 
 We use a fork of the [WordPress Plugin Boilerplate](https://github.com/saucal/WordPress-Plugin-Boilerplate), and we have a tool to generate a plugin folder for each project quickly [here](http://bitcoinlabs.saucal.com:3456/) (instead of you having to perform replaces).
 
-<h3 id="integrations">Third-Party Integrations</h3>
+### Third-Party Integrations
 
 Any and all third-party integrations need to be documented in an `INTEGRATIONS.md` file at the root of the project repository. This file includes a list of third-party services, which components of the project those services power, how the project interacts with the remote APIs, and when the interaction is triggered.
 

@@ -367,7 +367,7 @@ Writing information to the database is at the core of any website you build. Her
 
 * Certain options are "autoloaded" or put into the object cache on each page load. When [creating or updating options](http://codex.wordpress.org/Options_API), you can pass an ```$autoload``` argument to [```add_option()```](https://developer.wordpress.org/reference/functions/add_option/) or [```update_option()```](https://developer.wordpress.org/reference/functions/update_option/). Beware that all options are forcibly autoloaded on WordPress.com, and the sum of all options cannot exceed 1MB or the site will crash. VIP will warn you if the sum of options reaches 750KB. Be careful with widgets on WordPress.com since they are stored in options by default (see [Widget Posts functionality](https://wordpress.org/plugins/customize-widgets-plus/)).
 
-<h3 id="design-patterns">Design Patterns {% include Util/top %}</h3>
+### Design Patterns
 
 Using a common set of design patterns while working with PHP code is the easiest way to ensure the maintainability of a project. This section addresses standard practices that set a low barrier for entry to new developers on the project.
 
@@ -503,7 +503,7 @@ wp_register_script( 'custom-script', get_template_directory_uri() . '/js/asset.j
 
 Remember to increment the version in the defined constant prior to deployment.
 
-<h3 id="security">Security {% include Util/top %}</h3>
+### Security
 
 Security in the context of web development is a huge topic. This section only addresses some of the things we can do at the server-side code level.
 
@@ -694,7 +694,7 @@ if ( ! check_ajax_referer( 'my_action_name', '_wpnonce', false ) ) {
 }
 ```
 
-<h3 id="code-style">Code Style & Documentation {% include Util/top %}</h3>
+### Code Style & Documentation
 
 We follow the official WordPress [coding](http://make.wordpress.org/core/handbook/coding-standards/php/) and [documentation](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/) standards. The [WordPress Coding Standards for PHP_CodeSniffer](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) will find many common violations and flag risky code for manual review.
 
@@ -748,6 +748,6 @@ function protect_post_meta( $protected, $current_meta_key ) {
 }
 ```
 
-<h3 id="libraries">Libraries and Frameworks {% include Util/top %}</h3>
+### Libraries and Frameworks
 
 Generally, we do not use PHP frameworks or libraries that do not live within WordPress for general theme and plugin development. WordPress APIs provide us with 99 percent of the functionality we need from database management to sending emails. There are frameworks and libraries we use for themes and plugins that are being distributed or open-sourced to the public such as PHPUnit.
