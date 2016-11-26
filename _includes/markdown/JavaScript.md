@@ -208,7 +208,7 @@ Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate check
 
 ### Libraries
 
-There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of primary libraries used by SAU/CAL.
+There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of commonly-used libraries used:
 
 #### DOM Manipulation
 
