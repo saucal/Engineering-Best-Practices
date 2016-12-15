@@ -8,7 +8,13 @@ Sometimes we offer our clients a maintenance service in which we are responsable
 
 When a client signs up for the maintenance plan, a plugin list is made, and the critical ones are marked as such. This list helps us know which plugins needs special treatment or alerting when an update is available for them.
 
-This list is then attached to a card in the *Assets* column of the *Maintenance* board in our Breeze, along with other details, like:
+Every plugin on this list should have a short description of it's purpose on the site, and a short test case about how to test it's functionality.
+
+For plugins that are critical to the functionality, we need to have the devs contact channels handy (support channels), and find at least one alternative plugin in case it breaks during the update, and the devs fail to provide an update/fix in a short period of time. In the case it's needed, this alternative will be offered to the client, and he must accept to install this and replace the old plugin.
+
+This list should be compiled with the dev team that worked on the project before, and/or with the client itself, who probably know more about why they use the plugins they use (unles we started the site from the scratch).
+
+After it's finished it's then attached to a card in the *Assets* column of the *Maintenance* board in our Breeze, along with other details, like:
 
 * List of plugins (the file mentioned above)
 * Main Dev of the project
@@ -70,6 +76,8 @@ This doesn't mean that there won't be problems, it just means that this is usual
 6. And that's it for the maintenance cycle.
 
 #### Testing/QA
+
+Testing of WP major releases (4.x or x.0) should _start early on_ in staging, from the RC releases. These versions are usually available a couple weeks before the final release, meaning that there's time to do it in between 2 cycles (for monthly maintenance clients). 
 
 As explained above there are several people involved in testing:
 
