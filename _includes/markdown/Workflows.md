@@ -165,13 +165,15 @@ You may also see [Core Handbook on Commit Messages](https://make.wordpress.org/c
 
 All projects will treat the ```master``` branch as the canonical source for live, released, stable, production code.
 
-Projects may have a `staging` branch off of `master` where feature branches get merged and integrated before being merged into `master`. So feature branches would be made off of `staging` if it is used in a project, but otherwise feature branches would be made off of `master`. Take a look at [understanding](https://guides.github.com/introduction/flow/) the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) which is a more simplified than a more traditional [Git branching model](http://nvie.com/posts/a-successful-git-branching-model/). Compare these to help decide whether a `staging` branch is appropriate in your project.
+Projects will have a `staging` branch off of `master` where feature branches get merged and integrated before being merged into `master`. This branch basically represent the status of the latest code in the staging enviroment. 
+
+Take a look at [understanding](https://guides.github.com/introduction/flow/) the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) which is a more simplified than a more traditional [Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
 
 #### Merges
 
-In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a long-in-development feature is complete to merge ```master``` into it. All merging should be done by means of pull requests, so you don't need to worry about non-fast-forward (`--no-ff`) merges.
+In order to avoid large merge conflicts, merges should occur early and often. Do not wait until a long-in-development feature is complete to merge ```master``` into it. 
 
-When things are absolutely ready to go (i.e. it has passed code review and QA), we'll then merge the pull request into `master`.
+When things are absolutely ready to go (i.e. it has passed code review and QA), merge the feature branch into `staging`.
 
 ##### Complex Feature Branches
 
@@ -180,3 +182,13 @@ In some cases, a feature will be large enough to warrant multiple developers wor
 ##### Branch Cleanup
 
 This workflow will inevitably build up a large list of branches in the repository. To prevent a large number of unused branches living in the repository, we'll delete them after feature development is complete. Since all feature branches should get merged by means of pull requests, there will be a persistent reference to the original branch in the pull request. So after merging the pull request, delete the branch from Git. It can be restored later via the pull request.
+
+#### Backporting Client Changes
+
+In the event that a client or third-party developer makes a change to any file included in the repository, we'll capture the diff of their changeset and import it to our development repository by:
+
+* Checkout `master` or `staging` depending in which enviroment the change happened
+* Grabbing the diff of their changes (either downloading files from FTP, or some other way)
+* Applying the diff to the new branch, by commiting with a proper note (EXTERNAL: Commit message follow here)
+
+Be aware that this syncing process should happen before you merge any feature branch or new work into any phase, otherwise the diff would be different than what you might expect. At the end of this process your `master` or `staging` branch should have a clear copy of the enviroment codebase before any work you've done that's waiting to be deployed.
