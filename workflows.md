@@ -6,10 +6,10 @@ group: navigation
 weight: 9
 layout: default
 subnav:
-  - title: Maintenance
-    tag: maintenance
   - title: Version Control
     tag: version-control
+  - title: Maintenance
+    tag: maintenance
 updated: 14 Dec 2016
 ---
 
