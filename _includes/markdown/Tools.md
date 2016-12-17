@@ -93,7 +93,7 @@ admin_mail: test@saucal.com                # User mail for wp-admin. Default tes
 ---
 ```
 
-In order to trigger processing of the above provisioning of sites, you need to run `vagrant up --provision`
+In order to trigger processing of the above provisioning of sites, you need to run `vagrant up`
 
 #### Porting sites from other enviroments to VVV (WIP)
 
