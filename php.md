@@ -13,11 +13,9 @@ subnav:
   - title: Security
     tag: security
   - title: Code Style & Documentation
-    tag: code-style
-  - title: Unit and Integration Testing
-    tag: unit-testing
+    tag: code-style--documentation
   - title: Libraries and Frameworks
-    tag: libraries
+    tag: libraries-and-frameworks
 updated: 6 Oct 2014
 ---
 

@@ -9,7 +9,7 @@ subnav:
   - title: Philosophy
     tag: philosophy
   - title: Syntax and Formatting
-    tag: syntax-formatting
+    tag: syntax-and-formatting
   - title: Documentation
     tag: documentation
   - title: Performance

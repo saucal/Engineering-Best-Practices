@@ -7,11 +7,11 @@ weight: 7
 layout: default
 subnav:
   - title: Local Development Environments
-    tag: local-development
+    tag: local-development-environments
   - title: Task Runners
     tag: task-runners
   - title: Package/Dependency Managers
-    tag: package-managers
+    tag: packagedependency-managers
   - title: Version Control
     tag: version-control
   - title: Command Line Tools

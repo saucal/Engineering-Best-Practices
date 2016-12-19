@@ -6,14 +6,12 @@ group: navigation
 weight: 6
 layout: default
 subnav:
-  - title: Third-Party Integrations
-    tag: integrations
   - title: Modular Code
     tag: modular-code
-  - title: Dependencies
-    tag: dependencies
   - title: File Organization
     tag: file-organization
+  - title: Third-Party Integrations
+    tag: third-party-integrations
 updated: 23 June 2015
 ---
 
