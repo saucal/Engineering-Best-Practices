@@ -40,6 +40,10 @@ Every theme directory, should have this basic structure.
 
 We use a fork of the [WordPress Plugin Boilerplate](https://github.com/saucal/WordPress-Plugin-Boilerplate), and we have a tool to generate a plugin folder for each project quickly [here](http://bitcoinlabs.saucal.com:3456/) (instead of you having to perform replaces).
 
+Plugins that provides small mods/extensions to several other plugins should be named **{project}-customizations**. Eg: `saucal-customizations`. 
+
+As soon as the functionality being extended is large, or very focused on a specific plugin, this code should be in a separate plugin, and named **{project}-{descriptive-slug}**. Eg: `saucal-gforms-custom-field`.
+
 ### Third-Party Integrations
 
 Any and all third-party integrations need to be documented in an `INTEGRATIONS.md` file at the root of the project repository. This file includes a list of third-party services, which components of the project those services power, how the project interacts with the remote APIs, and when the interaction is triggered.
