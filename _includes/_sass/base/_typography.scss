@@ -20,6 +20,9 @@ blockquote {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: $font-family-heading;
+	font-size: 1.556rem;
+	font-weight: 700;
+	line-height: 1.2;
 }
 
 h1 {
@@ -73,13 +76,11 @@ h6 {
 
 p, ul, ol {
 	text-indent: 0em;
-	font-size: 1.6rem;
 	font-weight: 300;
 	line-height: 1.7;
 	margin: 14px 0px 18px 0px;
 
 	@include breakpoint($breakpoint-bravo) {
-		font-size: 1.8rem;
 	}
 }
 

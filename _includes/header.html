@@ -23,11 +23,13 @@
 	<div class="grid-inner">
 		<h1>
 			{% if page.page == "introduction" %}
-				Best Practices<br>
-				<span class="subhead">SAU/CAL Engineering</span>
+				Best Practices
 			{% else %}
 				{{ page.title }}
 			{% endif %}
 		</h1>
+		{% if page.page == "introduction" %}
+			<h3 class="subhead">SAU/CAL Engineering</span>
+		{% endif %}
 	</div>
 </header>
