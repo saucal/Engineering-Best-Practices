@@ -21,10 +21,10 @@ updated: 6 Oct 2014
 	<div class="col">
 		<h3><a href="{{ site.baseurl }}#top">Introduction</a></h3>
 		<ul>
-			<li><a href="{{ site.baseurl }}#audience">Audience</a></li>
-			<li><a href="{{ site.baseurl }}#goal">Goal</a></li>
-			<li><a href="{{ site.baseurl }}#philosophy">Philosophy</a></li>
-			<li><a href="{{ site.baseurl }}#contributing">Contributing</a></li>
+			<li><a href="{{ site.baseurl }}/#audience">Audience</a></li>
+			<li><a href="{{ site.baseurl }}/#goal">Goal</a></li>
+			<li><a href="{{ site.baseurl }}/#philosophy">Philosophy</a></li>
+			<li><a href="{{ site.baseurl }}/#contributing">Contributing</a></li>
 		</ul>
 	</div>
 
