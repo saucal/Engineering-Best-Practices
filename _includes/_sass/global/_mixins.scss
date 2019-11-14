@@ -94,6 +94,18 @@
 		@if 'google' == $icon {
 			content: '\e60d';
 		}
+
+		@if 'saucal-square' == $icon {
+			content: '\e900';
+		}
+
+		@if 'saucal-horizontal' == $icon {
+			content: '\e901';
+		}
+
+		@if 'close' == $icon {
+			content: '\e904';
+		}
 	}
 }
 
