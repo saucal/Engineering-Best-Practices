@@ -5,8 +5,8 @@
 	width: 100%;
 
 	h3 {
-		margin-top: -80px;
-		padding-top: 80px;
+		margin-top: -$top-header-height;
+		padding-top: $top-header-height;
 		color: #12103c;
 		margin-bottom: .1em;
 		font-size: 2.223rem;
