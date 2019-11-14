@@ -1,12 +1,10 @@
 footer[role="contentinfo"] {
-	padding: 0 $guaranteed-edge-standoff;
 	background-color: #333;
 	padding: 65px 0;
 	position: relative;
 
 	.page-footer-content {
 		padding: 0 $guaranteed-edge-standoff;
-		max-width: $single-max-width;
 		margin: 0 auto;
 		width: 100%;
 	}
