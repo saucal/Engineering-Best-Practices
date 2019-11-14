@@ -55,7 +55,7 @@
 
 			@include breakpoint($breakpoint-bravo) {
 				background-color: transparent;
-				text-align: center;
+				text-align: left;
 				display: block;
 			}
 
@@ -68,12 +68,11 @@
 		@include transition(height, 150ms, linear);
 
 		@include breakpoint($breakpoint-bravo) {
-			display: inline-block;
 			height: auto !important;
 			background-color: transparent;
-			position: relative;
-			top: auto;
-			width: 100%;
+			order: 0;
+			width: auto;
+			margin: 0;
 		}
 	}
 }
@@ -140,8 +139,10 @@
 		list-style-type: none;
 		padding: 0;
 		border-top: 1px solid #00000026;
+		@include breakpoint($breakpoint-bravo) {
+			border-top: none;
+		}
 			&:hover {
-				background-color: #303030;
 				@include breakpoint($breakpoint-bravo) {
 					background-color: transparent;
 				}

@@ -5,11 +5,12 @@
 	}
 
 	.subnav {
+		font-family: $font-family-sans;
 		display: none;
 		position: absolute;
-		left: -1em;
+		left: 0;
 		top: 3.35em;
-		background-color: #222;
+		background-color: $dark-blue;
 		z-index: 80;
 		margin: 0;
 		padding: 0;
@@ -29,6 +30,7 @@
 			font-size: 14px;
 			white-space: nowrap;
 			margin-bottom: 0;
+			color: #fff
 		}
 
 		a:hover {
