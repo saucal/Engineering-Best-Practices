@@ -33,30 +33,27 @@ img {
 }
 
 a {
-	color: darken($color-accent-alternate, 10%);
 	text-decoration: none;
-
-	&:visited {
-		color: desaturate($color-accent-alternate, 20%);
-	}
+	color: $color-text-default;
+	transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,-webkit-box-shadow .15s;
 
 	&:hover,
 	&:active {
-		color: saturate( darken($color-accent-alternate, 10%), 10% );
+		color: desaturate($color-text-default, 10%);
 	}
 }
 
 p a {
-	border-bottom: 1px solid rgba( $color-accent-alternate, .3 );
-
-	&:hover {
-		border-bottom-color: rgba( saturate( darken( $color-accent-alternate, 10%), 10% ), .8 );
+	position: relative;
+	box-shadow: inset 0 -0.056em 0 0 #12103c;
+	padding-left: 1px;
+	padding-right: 1px;
+	&:hover,
+	&:active {
+		color: #fff;
+		-webkit-box-shadow: inset 0 -2em 0 0 #000;
+		box-shadow: inset 0 -2em 0 0 #000;
 	}
-
-	&:visited {
-
-	}
-
 }
 
 // otherwise it's too wonky with our static header on mobile
