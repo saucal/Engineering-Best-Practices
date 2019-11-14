@@ -1,6 +1,8 @@
 #page-header {
 	padding: 0 $guaranteed-edge-standoff;
-	background: #303030;
+	border-top: 12px solid $dark-blue;
+	color: $dark-blue;
+	background: #fff;
 	position: fixed;
 	z-index: 9999;
 	width: 100%;
@@ -14,46 +16,42 @@
 		}
 	}
 	.logo-link {
-		position: absolute;
-		left: 10px;
-		height: $header-logo-small;
-		width: $header-logo-small;
-		z-index: 10; /* So that it overlays any expanded .top-nav */
-		@extend %hide-text;
-		background: #303030 url("img/saucal-logo-square.svg") no-repeat 50% 50%;
-		-webkit-background-size: 70%;
-		background-size: 70%;
+		@include icon("saucal-square");
+		font-size: 54px;
+		padding: 24px 0;
+		line-height: 1;
+		display: block;
+		color: $dark-blue;
+		&:before {
+			vertical-align: top;
+		}
 	}
 
 	.top-nav {
-		top: 6rem;
 		z-index: 5; /* higher than normal so it overlays content elements */
-		background-color: #303030;
+		background-color: #fff;
 		padding: 0;
 		height: 0;
-		position: relative;
+		flex: 1 1 auto;
+		order: 999;
+		width: 100%;
+		margin: 0 (-$guaranteed-edge-standoff);
+
+		body.js-mobile-expandable-is-open & {
+			height: calc( 100vh - #{$top-header-height} );
+			overflow-y: auto;
+		}
 
 		.js-mobile-expandable {
 			display: none;
 
 			&.is-open {
 				display: block;
-
-				&:before {
-					content: '';
-					border: 10px solid transparent;
-					border-bottom-color: #222;
-					display: block;
-					position: absolute;
-					right: .25em;
-					top: -20px;
-				}
 			}
 		}
 
 		.header-nav {
-			background-color: #222;
-			text-align: right;
+			background-color: #fff;
 
 			@include breakpoint($breakpoint-bravo) {
 				background-color: transparent;
@@ -83,33 +81,45 @@
 .page-header-content {
 	// @extend %grid-context;
 	position: relative;
-	height: 6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 // handles layout and functionality for the header menus.
 // styling the internal bits happens in components/header/...
 .toggle-menu-icon {
-	@extend %menu-icon;
 	@include icon('menu');
-	display: block;
-	font-size: 1.3rem;
-	background-color: black;
+	&:before {
+		vertical-align: middle;
+		margin-right: .8rem;
+	}
+	&:after {
+		font-family: $font-family-heading;
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: .1em;
+		text-transform: uppercase;
+		content: "Menu";
+	}
+
+	body.js-mobile-expandable-is-open & {
+		@include icon('close');
+		&:after {
+			content: "Close";
+		}
+	}
+
+	&,
+	&:active,
+	&:focus,
+	&:hover {
+		color: $dark-blue;
+	}
 
 	@include breakpoint($breakpoint-bravo) {
 		display: none;
-	}
-}
-
-.main-nav-supplemental-icon {
-	@extend %menu-icon;
-	@include icon('github');
-	display: block;
-	font-size: 1.3rem;
-	background-color: black;
-	right: 2.5em;
-
-	@include breakpoint($breakpoint-bravo) {
-		right: 0;
 	}
 }
 
@@ -119,7 +129,6 @@
 	line-height: inherit;
 	margin: 0;
 	padding: 0;
-	padding-top: 1em;
 
 	@include breakpoint($breakpoint-bravo) {
 		@include inline-list();
@@ -129,8 +138,8 @@
 
 	li {
 		list-style-type: none;
-		padding: .5em 1em;
-
+		padding: 0;
+		border-top: 1px solid #00000026;
 			&:hover {
 				background-color: #303030;
 				@include breakpoint($breakpoint-bravo) {
@@ -165,7 +174,7 @@
 	}
 
 	&.is-open {
-		position: absolute;
+		//position: absolute;
 		right: 0;
 		top: 0;
 		width: 100%;
@@ -179,7 +188,14 @@
 		padding: .8rem 0;
 		font-size: 14px;
 		font-weight: 400;
-		color: $color-dark-text;
+		color: $dark-blue;
+
+		font-family: $font-family-heading;
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: .036em;
+		padding: 8px 10px;
+		text-transform: uppercase;
 
 		@include breakpoint($breakpoint-bravo) {
 			padding: 21px 0;
