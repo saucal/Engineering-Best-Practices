@@ -91,9 +91,9 @@
 			content: '\e60c';
 		}
 
-    @if 'google' == $icon {
-      content: '\e60d';
-    }
+		@if 'google' == $icon {
+			content: '\e60d';
+		}
 	}
 }
 
