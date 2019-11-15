@@ -184,11 +184,11 @@ Use [ESLint](https://eslint.org/) to automate checks for coding standards violat
 
 ### Libraries
 
-There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of commonly-used libraries used:
+With the influx of JavaScript upgrades in recent years, the need for a third-party library to polyfill functionality is becoming more and more rare (outside of a build script). Don’t load in extensions unless the benefit outweighs the size of and added load-time of using it. While it is often more efficient for coding to use a quick jQuery method, it is rarely worth bringing in an entire library for one-off instances.
 
-#### DOM Manipulation
+If you are working on a legacy project that already contains a library, make sure you’re still evaluating the need for it as you build out features to best set up clients for the future.
 
-[jQuery](http://jquery.com/) - Our and WordPress's library of choice for DOM manipulation.
+There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses.
 
 #### Utility
 
