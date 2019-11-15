@@ -2,7 +2,7 @@
 	padding: 0 $guaranteed-edge-standoff;
 	border-top: 12px solid $dark-blue;
 	color: $dark-blue;
-	background: #fff;
+	background-color: #fff;
 	position: fixed;
 	z-index: 9999;
 	width: 100%;
@@ -161,7 +161,7 @@
 		&.current-menu-item > a,
 		&.current_page_parent > a {
 			&:after {
-				background-color: #585858;
+				background-color: $dark-blue;
 				bottom: 7px;
 				@include opacity(1);
 			}
