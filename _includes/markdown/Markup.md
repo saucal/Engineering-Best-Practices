@@ -72,15 +72,17 @@ Good:
 ```
 
 #### Schema.org Markup
-[Schema.org](http://schema.org) is the result of collaboration between Google, Bing, Yandex, and Yahoo! to provide the information their search engines need to understand content and provide the best search results possible. Adding Schema markup to your HTML provides search engines with structured data they can use to improve the way pages display in search results.
+[Schema.org](https://schema.org) is the result of collaboration between Google, Bing, Yandex, and Yahoo! to provide the information their search engines need to understand content and provide the best search results possible. Adding Schema.org data to your HTML provides search engines with structured data they can use to improve the way pages display in search results.
 
 For example, if you've ever searched for a restaurant and found that it had star reviews in its search results, this is a product of Schema.org and rich snippets.
 
-Schema.org markup is intended to tell the search engines what your data *means*, not just what it says.
+Schema.org data is intended to tell the search engines what your data *means*, not just what it says.
 
-To this end, we use Schema.org markup where relevant and reasonable to ensure that our clients have the best search visibility that we can provide.
+To this end, we use Schema.org data where relevant and reasonable to ensure that our clients have the best search visibility that we can provide.
 
-Schema markup should be validated against the [Google Structured Data Testing Tool](https://developers.google.com/structured-data/testing-tool/).
+Schema.org data can be provided in two forms: "microdata" markup added to a page's structure or a JSON-LD format. Google prefers developers adopt JSON-LD, which isolates the data provided for search engines from the markup meant for user agents. Even though the JSON-LD spec allows linking to data in an external file, search engines currently only parse JSON-LD data when it appears within a `<script type="application/ld+json">` tag, as shown below.
+
+Schema.org markup should be validated against the [Google Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool/u/0/).
 
 ##### Examples
 
