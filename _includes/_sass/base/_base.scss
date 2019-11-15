@@ -77,6 +77,18 @@ body #wpadminbar {
 	speak: none;
 }
 
+@include breakpoint($breakpoint-bravo) {
+	.bravo-hide {
+		display: none;
+	}
+}
+
+@include breakpoint($breakpoint-charlie) {
+	.charlie-hide {
+		display: none;
+	}
+}
+
 // .template-header {
 // 	padding-top: 4rem;
 // 	padding-bottom: 4rem;

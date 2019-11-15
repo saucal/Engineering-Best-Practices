@@ -10,9 +10,11 @@ footer[role="contentinfo"] {
 	}
 
 	.page-nav {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+		@include breakpoint($breakpoint-bravo) {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
 
 	ul {
@@ -24,10 +26,12 @@ footer[role="contentinfo"] {
 		letter-spacing: .05em;
 		text-transform: uppercase;
 		line-height: inherit;
-		display: inline-block;
 		margin: 0;
-		padding-right: $header-logo-large;
-		text-align: right;
+		text-align: center;
+		@include breakpoint($breakpoint-bravo) {
+			text-align: left;
+			padding-right: 2rem;
+		}
 		li {
 			color: #fff;
 			a {
@@ -39,14 +43,17 @@ footer[role="contentinfo"] {
 		}
 	}
 
-	
-
 	.footer-social {
 		font-size: 1rem;
 		padding-bottom: 0;
-		display: inline-block;
 		vertical-align: middle;
-		padding-left: $header-logo-large;
+		text-align: center;
+		margin-top: 1rem;
+		@include breakpoint($breakpoint-bravo) {
+			margin-top: 0rem;
+			padding-left: 2rem;
+			text-align: right;
+		}
 
 		a {
 			color: #a5a5a5;
