@@ -189,37 +189,6 @@ li:nth-child(n+4):nth-child(-n+8) {
 }
 ```
 
-#### SassDoc
-
-We use [SassDoc](http://sassdoc.com/getting-started/) to generate documentation for variables, functions, mixins and placeholders. If you’ve used PHPDoc, this should look familiar.
-
-Example:
-
-```scss
-/// Convert Photoshop tracking value to letter-spacing
-///
-/// @author Your Name
-///
-/// @param {Integer} $psvalue - The value should be the same value as in Photoshop, required
-///
-/// @group helpers
-///
-/// @example scss - Usage
-/// 	.wide-tracking {
-///			@include tracking(50);
-///		}
-///
-/// @example css - CSS output
-/// 	.wide-tracking {
-///			letter-spacing: .05em;
-/// 	}
-@mixin tracking($psvalue) {
-  letter-spacing: $psvalue / 1000 + em;
-}
-```
-
-Read more at [SassDoc official documentation](http://sassdoc.com/getting-started/).
-
 ### Performance
 
 Let's be honest, CSS "speed" and performance is not as important as PHP or JavaScript performance. However, this doesn't mean we should ignore it. A sum of small improvements equals better experience for the user.
