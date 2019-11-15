@@ -7,6 +7,15 @@
 	z-index: 9999;
 	width: 100%;
 	top: 0;
+	@include breakpoint($breakpoint-bravo) {
+		box-shadow: 0 1px 3px rgba(0,0,0,.35);
+		transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,-webkit-box-shadow .15s;
+		body.scroll-at-top & {
+			background-color: transparent;
+			box-shadow: 0 1px 3px rgba(0,0,0,0);
+			color: #fff;
+		}
+	}
 
 	body.admin-bar & {
 		top: 46px;
@@ -22,6 +31,11 @@
 		line-height: 1;
 		display: block;
 		color: $dark-blue;
+		@include breakpoint($breakpoint-bravo) {
+			body.scroll-at-top & {
+				color: #fff;
+			}
+		}
 		&:before {
 			vertical-align: top;
 		}
@@ -115,6 +129,11 @@
 	&:focus,
 	&:hover {
 		color: $dark-blue;
+		@include breakpoint($breakpoint-bravo) {
+			body.scroll-at-top & {
+				color: #fff;
+			}
+		}
 	}
 
 	@include breakpoint($breakpoint-bravo) {
@@ -162,6 +181,12 @@
 		&.current_page_parent > a {
 			&:after {
 				background-color: $dark-blue;
+				@include breakpoint($breakpoint-bravo) {
+					transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,-webkit-box-shadow .15s;
+					body.scroll-at-top & {
+						background-color: #fff;
+					}
+				}
 				bottom: 7px;
 				@include opacity(1);
 			}
@@ -190,6 +215,11 @@
 		font-size: 14px;
 		font-weight: 400;
 		color: $dark-blue;
+		@include breakpoint($breakpoint-bravo) {
+			body.scroll-at-top & {
+				color: #fff;
+			}
+		}
 
 		font-family: $font-family-heading;
 		font-size: 14px;
