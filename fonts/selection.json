@@ -505,7 +505,7 @@
 	],
 	"height": 1024,
 	"metadata": {
-		"name": "10up"
+		"name": "saucal"
 	},
 	"preferences": {
 		"showGlyphs": true,
@@ -513,7 +513,7 @@
 		"fontPref": {
 			"prefix": "icon-",
 			"metadata": {
-				"fontFamily": "10up",
+				"fontFamily": "saucal",
 				"majorVersion": 1,
 				"minorVersion": 0
 			},
