@@ -1,0 +1,20 @@
+{% for node in pages_list %}
+  {% if null != node.title %}
+    {% if null == group or node.group == group %}
+      <div class="col">
+        <h3><a href="{{ site.baseurl }}{{ node.url }}#top">{{ node.nav }}</a></h3>
+      	{% if node.subnav %}
+      	{% assign subnav_list = node.subnav %}
+      	<ul>
+      	  {% for subnav in subnav_list %}
+		      <li><a href="{{ site.baseurl }}{{ node.url }}#{{ subnav.tag }}">{{ subnav.title }}</a></li>
+          {% endfor %}
+      	</ul>
+      	{% assign subnav_list = nil %}
+      	{% endif %}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% assign pages_list = nil %}
+{% assign group = nil %}
