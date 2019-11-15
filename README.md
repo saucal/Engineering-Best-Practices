@@ -17,4 +17,4 @@ bundle exec jekyll serve
 
 ## License
 
-This code is forked from <a href="https://github.com/10up/Engineering-Best-Practices/">10up's Engineering Best Practices</a>. As such, it is a derivative work. Why not fork the things, right? Released under MIT license. Copyright 2014 by 10up; modifications copyright 2016 by SAU/CAL.
+This code is forked from <a href="https://github.com/10up/Engineering-Best-Practices/">10up's Engineering Best Practices</a>. As such, it is a derivative work. Why not fork the things, right? Released under MIT license. Copyright 2014 by 10up; modifications copyright 2019 by SAU/CAL.

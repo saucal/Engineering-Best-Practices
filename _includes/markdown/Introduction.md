@@ -6,4 +6,4 @@ We are constantly challenging ourselves and learning. Knowledge gives us a compe
 
 ### Contributing
 
-Please contribute via [pull requests on GitHub](https://github.com/saucal/Engineering-Best-Practices), or via [10up's upstream repo](https://github.com/10up/Engineering-Best-Practices) which SAU/CAL has forked here.
+Please contribute via [pull requests on GitHub](https://github.com/saucal/Engineering-Best-Practices).

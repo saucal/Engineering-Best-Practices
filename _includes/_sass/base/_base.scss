@@ -5,7 +5,7 @@
 }
 
 html {
-	font-size: 62.5%;
+	font-size: 18px;
 }
 
 body {
@@ -14,7 +14,6 @@ body {
 	color: $color-text-default;
 	background-color: $color-background-color-default;
 	font-family: $font-family-sans;
-    padding-top: 60px;
 }
 
 ::selection {
@@ -33,30 +32,32 @@ img {
 }
 
 a {
-	color: darken($color-accent-alternate, 10%);
 	text-decoration: none;
-
-	&:visited {
-		color: desaturate($color-accent-alternate, 20%);
-	}
+	color: $color-text-default;
+	transition: color .15s,background-color .15s,background-size .15s,border-color .15s,box-shadow .15s,-webkit-box-shadow .15s;
 
 	&:hover,
 	&:active {
-		color: saturate( darken($color-accent-alternate, 10%), 10% );
+		color: desaturate($color-text-default, 10%);
+	}
+}
+
+%saucal-link {
+	position: relative;
+	background: linear-gradient( to bottom, #000 0%, #000 100% );
+	background-position: 0 100%;
+	background-repeat: repeat-x;
+	background-size: 4px 1px;
+	text-decoration: none;
+	&:hover,
+	&:active {
+		color: #fff;
+		background-size: 4px 2em;
 	}
 }
 
 p a {
-	border-bottom: 1px solid rgba( $color-accent-alternate, .3 );
-
-	&:hover {
-		border-bottom-color: rgba( saturate( darken( $color-accent-alternate, 10%), 10% ), .8 );
-	}
-
-	&:visited {
-
-	}
-
+	@extend %saucal-link;
 }
 
 // otherwise it's too wonky with our static header on mobile
@@ -74,6 +75,18 @@ body #wpadminbar {
 .interface-checkbox {
 	display: none;
 	speak: none;
+}
+
+@include breakpoint($breakpoint-bravo) {
+	.bravo-hide {
+		display: none;
+	}
+}
+
+@include breakpoint($breakpoint-charlie) {
+	.charlie-hide {
+		display: none;
+	}
 }
 
 // .template-header {

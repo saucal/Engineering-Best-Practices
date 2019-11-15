@@ -9,6 +9,7 @@ $medium-grey: #eeeeee; /*used to be "light-grey" but needed a lighter grey added
 $dark-grey: #545353;
 $very-dark-grey: #232323;
 $almost-black: #111;
+$dark-blue: #12103c;
 
 // Assign colors
 $default-light-color: $very-light-grey;
@@ -56,11 +57,11 @@ $color-error-light: #f2dede;
 $color-error-dark: darken(saturate($color-error-light, 50%), 50%);
 
 // font stacks
-$base-font-size: 1.2rem;
-$base-line-height: 1.4;
+$base-font-size: 18px;
+$base-line-height: 1.5;
 $font-family-serif: 'freight-text-pro', serif;
-$font-family-sans: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
-$font-family-heading: "Roboto Slab", "Times New Roman", Times, Baskerville, Georgia, serif;
+$font-family-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";;
+$font-family-heading: Montserrat, sans-serif;
 
 // responsive breakpoints
 $wpadminbar-narrow: 782px;
@@ -78,15 +79,16 @@ $header-logo-large: 80px;
 $header-logo-large-protrusion: $header-logo-large * .16;
 
 // grid metrics
-$grid-width: 990px;
+$grid-width: 1400px;
 $grid-gutter: percentage(30px / $grid-width);
 $guaranteed-edge-standoff: percentage(25px / $grid-width);
 $guaranteed-edge-standoff: $grid-gutter;
 
-$single-max-width: 900px;
+$single-max-width: 1400px;
 
 $header-height-sm: 200px;
 $header-height: 388px;
+$top-header-height: 114px;
 
 
 // ----------------------

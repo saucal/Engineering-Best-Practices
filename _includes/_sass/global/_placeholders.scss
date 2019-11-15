@@ -36,7 +36,7 @@
 	font-size: 1.3rem;
 	color: #fff;
 	display: none;
-	position: absolute;
+	// position: absolute;
 	top: 15px;
 	right: 0;
 	padding: 7px;
@@ -46,14 +46,12 @@
 
 	@include breakpoint($breakpoint-bravo) {
 		font-size: 1.6rem;
-		height: 2.8rem;
-		width: 2.8rem;
 	}
 }
 
 // Used by the "icon" mixin.
 %icon {
-	font-family: tenup;
+	font-family: saucal;
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
