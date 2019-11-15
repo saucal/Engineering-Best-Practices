@@ -8,33 +8,9 @@ JavaScript libraries should only be loaded on the page when needed. `jquery-1.11
 
 #### Use jQuery Wisely
 
-[jQuery](http://jquery.com/) is a JavaScript framework that allows us easily accomplish complex tasks such as AJAX and animations. jQuery is great for certain situations but overkill for others. For example, let's say we want to hide an element:
+[jQuery](http://jquery.com/) is a JavaScript framework that allows us easily accomplish complex tasks such as AJAX and animations. jQuery is great for certain situations but overkill for others. 
 
-```javascript
-document.getElementById( 'element' ).style.display = 'none';
-```
-
-vs.
-
-```javascript
-jQuery( '#element' ).hide();
-```
-
-The non-jQuery version is [much faster](http://jsperf.com/hide-with-and-without-jquery) and is still only one line of code.
-
-#### Try to Pass an HTMLElement or HTMLCollection to jQuery Instead of a Selection String
-
-When we create a new jQuery object by passing it a selection string, jQuery uses its selection engine to select those element(s) in the DOM:
-
-```javascript
-jQuery( '#menu' );
-```
-
-We can pass our own [HTMLCollection](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection) or [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) to jQuery to create the same object. Since jQuery does a lot of magic behind the scenes on each selection, [this will be faster](http://jsperf.com/wrap-an-element-or-html-collection-in-jquery):
-
-```javascript
-jQuery( document.getElementById( 'menu' ) );
-```
+If you only need to perform simple tasks, there might be a good alternative in raw JavaScript. A very helpful compilation of these cases is available on [You Might Not Need jQuery](http://youmightnotneedjquery.com/).
 
 #### Cache DOM Selections
 
