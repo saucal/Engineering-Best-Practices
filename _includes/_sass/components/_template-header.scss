@@ -22,9 +22,13 @@
   }
 
   .grid-inner {
-    padding: 5.5rem $guaranteed-edge-standoff;
-    max-width: none;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 200px;
+    @include breakpoint($breakpoint-bravo) {
+      height: 14rem;
+    }
   }
 }
 

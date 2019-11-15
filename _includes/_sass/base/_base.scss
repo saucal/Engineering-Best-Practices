@@ -34,7 +34,7 @@ img {
 a {
 	text-decoration: none;
 	color: $color-text-default;
-	transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,-webkit-box-shadow .15s;
+	transition: color .15s,background-color .15s,background-size .15s,border-color .15s,box-shadow .15s,-webkit-box-shadow .15s;
 
 	&:hover,
 	&:active {
@@ -42,17 +42,22 @@ a {
 	}
 }
 
-p a {
+%saucal-link {
 	position: relative;
-	box-shadow: inset 0 -0.056em 0 0 #12103c;
-	padding-left: 1px;
-	padding-right: 1px;
+	background: linear-gradient( to bottom, #000 0%, #000 100% );
+	background-position: 0 100%;
+	background-repeat: repeat-x;
+	background-size: 4px 1px;
+	text-decoration: none;
 	&:hover,
 	&:active {
 		color: #fff;
-		-webkit-box-shadow: inset 0 -2em 0 0 #000;
-		box-shadow: inset 0 -2em 0 0 #000;
+		background-size: 4px 2em;
 	}
+}
+
+p a {
+	@extend %saucal-link;
 }
 
 // otherwise it's too wonky with our static header on mobile
