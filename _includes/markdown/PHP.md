@@ -256,23 +256,6 @@ For that reason, it's best to make the code that repopulates the cache available
 
 In some cases, it might be necessary to create multiple objects depending on the parameters a function is called with. In these cases, it's usually a good idea to create a cache key which includes a representation of the variable parameters. A simple solution for this would be appending an md5 hash of the serialized parameters to the key name.
 
-##### Page Caching
-
-Page caching in the context of web development refers to storing a requested location's entire output to serve in the event of subsequent requests to the same location.
-
-[Batcache](https://wordpress.org/plugins/batcache) is a WordPress plugin that uses the object cache (often Memcache in the context of WordPress) to store and serve rendered pages. It can also optionally cache redirects. It's not as fast as some other caching plugins, but it can be used where file-based caching is not practical or desired.
-
-Batcache is aimed at preventing a flood of traffic from breaking your site. It does this by serving old (5 minute max age by default, but adjustable) pages to new users. This reduces the demand on the web server CPU and the database. It also means some people may see a page that is a few minutes old. However, this only applies to people who have not interacted with your website before. Once they have logged-in or left a comment, they will always get fresh pages.
-
-Although this plugin has a lot of benefits, it also has a couple of code design requirements:
-
-* As the rendered HTML of your pages might be cached you cannot rely on server side logic related to ```$_SERVER```, ```$_COOKIE``` or other values that are unique to a particular user.
-* You can however implement cookie or other user based logic on the front-end (eg. with JavaScript)
-
-Batcache does not cache logged in users (based on WordPress login cookies), so keep this in mind the performance implications for subscription sites (like BuddyPress). Batcache also treats the query string as part of the URL which means the use of query strings for tracking campaigns (common with Google Analytics) can render page caching ineffective.  Also beware that while WordPress VIP uses batcache, there are specific rules and conditions on VIP that do not apply to the open source version of the plugin.
-
-There are other popular page caching solutions such as the W3 Total Cache plugin, though we generally do not use them for a variety of reasons.
-
 ##### AJAX Endpoints
 
 AJAX stands for Asynchronous JavaScript and XML. Often, we use JavaScript on the client-side to ping endpoints for things like infinite scroll.
