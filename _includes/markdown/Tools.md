@@ -23,13 +23,13 @@ At SAU/CAL, we use [Vagrant](https://www.vagrantup.com/) to build and interact w
 
 ### Version Control
 
-[Git](http://git-scm.com) - We use Git for version control. It is _critical_ that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to use the command line for interacting with Git. GUI’s are permitted but will not be supported internally. For more information on Git:
+[Git](http://git-scm.com) - We use Git for version control. It is _critical_ that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to learn to use the command line for interacting with Git. GUI’s are permitted but none of them will be supported internally. For more information on Git:
 
 * [Hello World | GitHub Guides](https://guides.github.com/activities/hello-world/)
 * [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
 * [Forking Projects | GitHub Guides](https://guides.github.com/activities/forking/)
 
-[SVN](https://subversion.apache.org/) - We use SVN, but only in the context of WordPress.com VIP. Again, we encourage people to use the command line as we do not support GUI's internally.
+[SVN](https://subversion.apache.org/) - We use SVN, but only in the context of uploading plugins to the public repository. Again, we encourage people to use the command line as we do not support GUI's internally.
 
 ### Command Line
 
