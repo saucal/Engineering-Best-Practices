@@ -3,7 +3,7 @@ The following are the tools we use at SAU/CAL. This list will grow and change ov
 ### Code Checkers
 
 * **[PHP_CodeSniffer WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)** for [PHP coding standards](../php/#code-style--documentation).
-* **[ESLint](http://jshint.com/)** for JavaScript [code style](../javascript/#code-style--documentation) reporting.
+* **[ESLint](https://eslint.org/)** for JavaScript [code style](../javascript/#code-style--documentation) reporting.
 
 ### Local Development Environments
 
@@ -15,7 +15,7 @@ At SAU/CAL, we use [Vagrant](https://www.vagrantup.com/) to build and interact w
 
 ### Task Runners
 
-[Gulp](http://gulpjs.com/) - Gulp is a task runner built on Node wthat lets you automate tasks like Sass preprocessing and JS minification.
+[Gulp](https://gulpjs.com/) - Gulp is a task runner built on Node wthat lets you automate tasks like Sass preprocessing and JS minification.
 
 We have a [Gulp Project Boilerplate](https://github.com/saucal/project-gulp-boilerplate) that we use on several projects. Documentation available in the repo.
 
@@ -25,14 +25,14 @@ We have a [Gulp Project Boilerplate](https://github.com/saucal/project-gulp-boil
 
 ### Version Control
 
-[Git](http://git-scm.com) - We use Git for version control. It is _critical_ that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to learn to use the command line for interacting with Git. GUI’s are permitted but none of them will be supported internally. For more information on Git:
+[Git](https://git-scm.com) - We use Git for version control. It is _critical_ that you are comfortable with Git: read [the book](https://git-scm.com/book/en/v2)! We encourage people to learn to use the command line for interacting with Git. GUI’s are permitted but none of them will be supported internally. For more information on Git:
 
-* [Hello World | GitHub Guides](https://guides.github.com/activities/hello-world/)
+* [Hello World \| GitHub Guides](https://guides.github.com/activities/hello-world/)
 * [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
-* [Forking Projects | GitHub Guides](https://guides.github.com/activities/forking/)
+* [Forking Projects \| GitHub Guides](https://guides.github.com/activities/forking/)
 
 [SVN](https://subversion.apache.org/) - We use SVN, but only in the context of uploading plugins to the public repository. Again, we encourage people to use the command line as we do not support GUI's internally.
 
 ### Command Line
 
-[WP-CLI](http://wp-cli.org) - A command line interface for WordPress. This is an extremely powerful tool that allows us to do imports, exports, run custom scripts, and more via the command line. Often this is the only way we can affect a large database (WordPress.com VIP or WPEngine). This tool is installed by default on VVV and VIP Quickstart.
+[WP-CLI](https://wp-cli.org) - A command line interface for WordPress. This is an extremely powerful tool that allows us to do imports, exports, run custom scripts, and more via the command line. Often this is the only way we can affect a large database (WordPress.com VIP or WPEngine). This tool is installed by default on VVV and VIP Quickstart.

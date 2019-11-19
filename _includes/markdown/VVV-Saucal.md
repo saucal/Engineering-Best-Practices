@@ -105,7 +105,7 @@ This is a draft of how to move from your current enviroment (MAMP, XAMPP, EasyPH
 9. Do a search and replace using WP-CLI to replace any reference to the old URL of the site, and make it point to the new URL.
 	1. Being logged in to your vagrant through SSH, you need to go to the root of your site. Which you can do by doing `cd /srv/www/{folder-name}`.
 	2. After that you need to do the following `wp search-replace "{old_url}" "{new_url}" --precise --all-tables --dry-run`, replacing `{old_url}` with a protocol-less version of the old url, and `{new_url}` with a protocol-less version of the new URL.
-		* Eg: If your old URL was `http://127.0.0.1/my-site`, you need to use `//127.0.0.1/my-site` as `{old_url}`. Same logic applies to the new URL, if your chosen domain is `my-crazy-site.dev`, use `//my-crazy-site.dev` as `{new_url}`
+		* Eg: If your old URL was `https://127.0.0.1/my-site`, you need to use `//127.0.0.1/my-site` as `{old_url}`. Same logic applies to the new URL, if your chosen domain is `my-crazy-site.dev`, use `//my-crazy-site.dev` as `{new_url}`
 	3. The above command, will show how many replaces will be made. Normally most of the replaces will be in the wp_posts table, wp_options, and maybe wp_comments if you have any.
 	4. If the replaces shown by the previous command look nice, run it again, but now without the `--dry-run` option, which will make it actually perform the changes.
 

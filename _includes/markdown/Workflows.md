@@ -2,7 +2,7 @@ We consider standardizing a workflow to be a very important part of the developm
 
 ### Version Control
 
-We version control all projects using [Git](http://git-scm.com/). Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each other's changes.
+We version control all projects using [Git](https://git-scm.com/). Version control allows us to track codebase history, maintain parallel tracks of development, and collaborate without stomping out each other's changes.
 
 #### Repository Structure
 
@@ -80,7 +80,7 @@ All projects will treat the ```master``` branch as the canonical source for live
 
 Projects will have a `staging` branch off of `master` where feature branches get merged and integrated before being merged into `master`. This branch basically represent the status of the latest code in the staging enviroment. 
 
-Take a look at [understanding](https://guides.github.com/introduction/flow/) the [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html) which is a more simplified than a more traditional [Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
+Take a look at [understanding](https://guides.github.com/introduction/flow/) the [GitHub Flow](https://scottchacon.com/2011/08/31/github-flow.html) which is a more simplified than a more traditional [Git branching model](https://nvie.com/posts/a-successful-git-branching-model/).
 
 #### Merges
 

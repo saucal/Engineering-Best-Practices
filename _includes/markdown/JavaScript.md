@@ -8,9 +8,9 @@ JavaScript libraries should only be loaded on the page when needed. `jquery-1.11
 
 #### Use jQuery Wisely
 
-[jQuery](http://jquery.com/) is a JavaScript framework that allows us easily accomplish complex tasks such as AJAX and animations. jQuery is great for certain situations but overkill for others. 
+[jQuery](https://jquery.com/) is a JavaScript framework that allows us easily accomplish complex tasks such as AJAX and animations. jQuery is great for certain situations but overkill for others. 
 
-If you only need to perform simple tasks, there might be a good alternative in raw JavaScript. A very helpful compilation of these cases is available on [You Might Not Need jQuery](http://youmightnotneedjquery.com/).
+If you only need to perform simple tasks, there might be a good alternative in raw JavaScript. A very helpful compilation of these cases is available on [You Might Not Need jQuery](https://youmightnotneedjquery.com/).
 
 #### Cache DOM Selections
 
@@ -55,7 +55,7 @@ $hideButton.on( 'click', function() {
 	$menu.hide();
 });
 ```
-Notice how in cached versions we are pulling the menu selection out of the event handler so it only happens once. Non-jQuery cached is not surprisingly the [fastest way to handle this situation](http://jsperf.com/dom-selection-caching).
+Notice how in cached versions we are pulling the menu selection out of the event handler so it only happens once. Non-jQuery cached is not surprisingly the [fastest way to handle this situation](https://jsperf.com/dom-selection-caching).
 
 #### Event Delegation
 
@@ -79,7 +79,7 @@ jQuery( '#menu' ).on( 'click', 'li', function() {
 });
 ```
 
-The non-jQuery method is as usual [more performant](http://jsperf.com/jquery-vs-non-jquery-event-delegation). You may be wondering why we don't just add one listener to ```<body>``` for all our events. Well, we want the event to *bubble up the DOM as little as possible* for [performance reasons](http://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
+The non-jQuery method is as usual [more performant](https://jsperf.com/jquery-vs-non-jquery-event-delegation). You may be wondering why we don't just add one listener to ```<body>``` for all our events. Well, we want the event to *bubble up the DOM as little as possible* for [performance reasons](https://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
 
 ### Design Patterns
 
@@ -176,7 +176,7 @@ Another example in JavaScript is ```escape()``` and ```unescape()```. These func
 
 ### Code Style & Documentation
 
-We conform to [WordPress JavaScript coding standards](http://make.wordpress.org/core/handbook/coding-standards/javascript/).
+We conform to [WordPress JavaScript coding standards](https://make.wordpress.org/core/handbook/coding-standards/javascript/).
 
 We conform to the [WordPress JavaScript Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/).
 
@@ -192,7 +192,7 @@ There are many JavaScript libraries available today. Many of them directly compe
 
 #### Utility
 
-[Underscore](http://underscorejs.org) - Provides a number of useful utility functions such as ```clone()```, ```each()```, and ```extend()```. WordPress core uses this library quite a bit.
+[Underscore](https://underscorejs.org) - Provides a number of useful utility functions such as ```clone()```, ```each()```, and ```extend()```. WordPress core uses this library quite a bit.
 
 #### Frameworks
 
