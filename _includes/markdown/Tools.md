@@ -17,6 +17,8 @@ At SAU/CAL, we use [Vagrant](https://www.vagrantup.com/) to build and interact w
 
 [Gulp](http://gulpjs.com/) - Gulp is a task runner built on Node wthat lets you automate tasks like Sass preprocessing and JS minification.
 
+We have a [Gulp Project Boilerplate](https://github.com/saucal/project-gulp-boilerplate) that we use on several projects. Documentation available in the repo.
+
 ### Package/Dependency Managers
 
 [Composer](https://getcomposer.org) - We use Composer for managing PHP dependencies. Usually everything we need is bundled with WordPress. Sometimes we need external libraries like "Patchwork". Composer is a great way to manage those external libraries but is not necessary on most projects
