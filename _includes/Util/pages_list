@@ -8,13 +8,18 @@
       {% endif %}
       	<a href="{{ site.baseurl }}{{ node.url }}">{{ node.nav }}</a>
       	{% if node.subnav %}
-      	{% assign subnav_list = node.subnav %}
-      	<ul class="subnav">
-      	  {% for subnav in subnav_list %}
-		      <li><a href="{{ site.baseurl }}{{ node.url }}#{{ subnav.tag }}">{{ subnav.title }}</a></li>
-          {% endfor %}
-      	</ul>
-      	{% assign subnav_list = nil %}
+          {% assign subnav_list = node.subnav %}
+          <ul class="subnav">
+            {% for subnav in subnav_list %}
+              {% if subnav.tag %}
+                {% capture this_url %}{{ site.baseurl }}{{ node.url }}#{{ subnav.tag }}{% endcapture %}
+              {% else %}
+                {% capture this_url %}{{ site.baseurl }}{{ node.url }}{{ subnav.url }}{% endcapture %}
+              {% endif %}
+              <li><a href="{{ this_url }}">{{ subnav.title }}</a></li>
+            {% endfor %}
+          </ul>
+          {% assign subnav_list = nil %}
       	{% endif %}
       </li>
     {% endif %}
