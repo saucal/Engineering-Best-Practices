@@ -2,10 +2,8 @@ The following are the tools we use at SAU/CAL. This list will grow and change ov
 
 ### Code Checkers
 
-* **[PHP_CodeSniffer WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)** for [PHP coding standards](../php/#code-style).
-* **[PHP MD](http://phpmd.org/) ([experimental](https://github.com/xwp/wp-dev-lib/issues/4))** for higher-level [PHP coding checks](../php/#code-style).
-* **[JSHint](http://jshint.com/)** for basic [code style](../javascript/#code-style) reporting.
-* **[JSCS](http://jscs.info/)** for comprehensive [code style](../javascript/#code-style) reporting and fixing.
+* **[PHP_CodeSniffer WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)** for [PHP coding standards](../php/#code-style--documentation).
+* **[ESLint](http://jshint.com/)** for JavaScript [code style](../javascript/#code-style--documentation) reporting.
 
 ### Local Development Environments
 
