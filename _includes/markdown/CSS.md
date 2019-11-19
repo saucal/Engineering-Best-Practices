@@ -138,7 +138,7 @@ Sass nesting has changed the lives of many, but like everything in life, abusing
 
 #### Selectors naming
 
-Selectors should be lowercase, and words should be separated with hyphens. Please avoid camelcase. Underscores are acceptable if they’re being used for [BEM](http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) syntax. The naming of selectors should be consistent and describe the functional purpose of the styles they’re applying.
+Selectors should be lowercase, and words should be separated with hyphens. Please avoid camelcase. Underscores are acceptable if they’re being used for [BEM](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/) syntax. The naming of selectors should be consistent and describe the functional purpose of the styles they’re applying.
 
 Avoid:
 
@@ -189,37 +189,6 @@ li:nth-child(n+4):nth-child(-n+8) {
 }
 ```
 
-#### SassDoc
-
-We use [SassDoc](http://sassdoc.com/getting-started/) to generate documentation for variables, functions, mixins and placeholders. If you’ve used PHPDoc, this should look familiar.
-
-Example:
-
-```scss
-/// Convert Photoshop tracking value to letter-spacing
-///
-/// @author Your Name
-///
-/// @param {Integer} $psvalue - The value should be the same value as in Photoshop, required
-///
-/// @group helpers
-///
-/// @example scss - Usage
-/// 	.wide-tracking {
-///			@include tracking(50);
-///		}
-///
-/// @example css - CSS output
-/// 	.wide-tracking {
-///			letter-spacing: .05em;
-/// 	}
-@mixin tracking($psvalue) {
-  letter-spacing: $psvalue / 1000 + em;
-}
-```
-
-Read more at [SassDoc official documentation](http://sassdoc.com/getting-started/).
-
 ### Performance
 
 Let's be honest, CSS "speed" and performance is not as important as PHP or JavaScript performance. However, this doesn't mean we should ignore it. A sum of small improvements equals better experience for the user.
@@ -243,7 +212,7 @@ For that purpose, **classes** are our preferred selectors: pretty low specificit
 
 Avoid using `!important` at all costs.
 
-Use [efficient selectors](http://csswizardry.com/2011/09/writing-efficient-css-selectors/).
+Use [efficient selectors](https://csswizardry.com/2011/09/writing-efficient-css-selectors/).
 
 Avoid:
 
@@ -318,10 +287,10 @@ Avoid:
 Always test animations on a real mobile device loading real assets, to ensure the limited memory environment doesn't tank the site.
 
 Articles worth reading:
-* [CSS animations performance: the untold story](http://greensock.com/css-performance)
+* [CSS animations performance: the untold story](https://greensock.com/css-performance)
 * [Myth Busting: CSS Animations vs. JavaScript](https://css-tricks.com/myth-busting-css-animations-vs-javascript/)
-* [CSS vs. JS Animation: Which is Faster?](http://davidwalsh.name/css-js-animation)
-* [Why Moving Elements With Translate() Is Better Than Pos:abs Top/left](http://www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/)
+* [CSS vs. JS Animation: Which is Faster?](https://davidwalsh.name/css-js-animation)
+* [Why Moving Elements With Translate() Is Better Than Pos:abs Top/left](https://www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/)
 * [CSS vs JavaScript Animations](https://developers.google.com/web/fundamentals/look-and-feel/animations/css-vs-javascript?hl=en)
 * [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
 
@@ -429,12 +398,12 @@ If a simple grid is needed, define and document placeholders and mixins as neede
 
 Our preference is not to use a 3rd party grid system. Too often we are faced with a design that isn’t built on a grid or purposefully breaks a loosely defined grid. Even if the designer had a grid in mind, there are often needs that require more creative solutions. For example: fixed-width content areas to accommodate advertising.
 
-Sometimes a more complex grid sytem is warranted and leveraging a 3rd party library will gain some efficiency. However, keep in mind that by adopting a grid system you are forcing all future collaborators on the project to learn this system. For some sites we will consider the use of popular and well supported grid systems, such as [Bourbon Neat](http://neat.bourbon.io/) or [Susy](http://susydocs.oddbird.net/).
+Sometimes a more complex grid sytem is warranted and leveraging a 3rd party library will gain some efficiency. However, keep in mind that by adopting a grid system you are forcing all future collaborators on the project to learn this system. For some sites we will consider the use of popular and well supported grid systems, such as [Bourbon Neat](https://neat.bourbon.io/) or [Susy](https://susydocs.oddbird.net/).
 
 #### Resets
 
-Please use [normalize.css](http://necolas.github.io/normalize.css/).
+Please use [normalize.css](https://necolas.github.io/normalize.css/).
 
 ### Further reading
 
-[CSS: Just Try and Do a Good Job](http://css-tricks.com/just-try-and-do-a-good-job/)
+[CSS: Just Try and Do a Good Job](https://css-tricks.com/just-try-and-do-a-good-job/)

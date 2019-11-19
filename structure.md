@@ -3,7 +3,7 @@ page: structure
 title: Project Structure
 nav: Structure
 group: navigation
-weight: 6
+weight: 2
 layout: default
 subnav:
   - title: Modular Code

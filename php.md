@@ -3,7 +3,7 @@ page: php
 title: PHP
 nav: PHP
 group: navigation
-weight: 5
+weight: 6
 layout: default
 subnav:
   - title: Performance
@@ -16,6 +16,8 @@ subnav:
     tag: code-style--documentation
   - title: Libraries and Frameworks
     tag: libraries-and-frameworks
+  - title: WooCommerce
+    url: woocommerce/
 updated: 6 Oct 2014
 ---
 

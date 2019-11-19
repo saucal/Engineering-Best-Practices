@@ -46,27 +46,6 @@ As soon as the functionality being extended is large, or very focused on a speci
 
 ### Third-Party Integrations
 
-Any and all third-party integrations need to be documented in an `INTEGRATIONS.md` file at the root of the project repository. This file includes a list of third-party services, which components of the project those services power, how the project interacts with the remote APIs, and when the interaction is triggered.
-
-For example:
-
-```
-## CrunchBase
-Remote service for fetching funding and other investment data related to tech startups.
-
-### Scheduling
-- The CrunchBase API is used via JS in a dynamic product/company search on post edit pages
-- Funding data is pulled every 6 hours by WP Cron to update cached data
-
-### Integration Points
-- /assets/js/src/crunchbase-autocomplete.js
-- /includes/classes/crunchbase.php
-- /includes/classes/cron.php
-
-### Development API
-- See http://somesitethatrequireslogin.com/credentials-for-project
-```
-
 #### API Keys and Credentials
 
 Authentication credentials and API keys should _never_ be hard-coded into a project. Hard-coding production credentials leads to embarrassing eventualities like posting development content to Twitter or emailing such content to clients' mail lists.
@@ -86,4 +65,4 @@ if ( ! defined( 'CLIENT_MANDRILL_API_KEY' ) && ! ENV_DEVELOPMENT ) {
 
 The `ENV_DEVELOPMENT` constant should always be set to `true` for local development and should be used whenever and wherever possible to prevent production-only functionality from triggering in a local environment.
 
-The location where other engineers can retrieve developer API keys (i.e. Basecamp thread) can and should be logged in the `INTEGRATIONS.md` file to aid in local testing. Production API keys must _never_ be stored in the repository, neither in text files or hard-coded into the project itself.
+Production API keys must _never_ be stored in the repository, neither in text files or hard-coded into the project itself.

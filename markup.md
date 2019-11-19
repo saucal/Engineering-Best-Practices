@@ -3,7 +3,7 @@ page: markup
 title: Markup
 nav: Markup
 group: navigation
-weight: 2
+weight: 3
 layout: default
 subnav:
   - title: Philosophy

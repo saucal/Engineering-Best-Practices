@@ -3,15 +3,20 @@
     {% if null == group or node.group == group %}
       <div class="col">
         <h3><a href="{{ site.baseurl }}{{ node.url }}#top">{{ node.nav }}</a></h3>
-      	{% if node.subnav %}
-      	{% assign subnav_list = node.subnav %}
-      	<ul>
-      	  {% for subnav in subnav_list %}
-		      <li><a href="{{ site.baseurl }}{{ node.url }}#{{ subnav.tag }}">{{ subnav.title }}</a></li>
-          {% endfor %}
-      	</ul>
-      	{% assign subnav_list = nil %}
-      	{% endif %}
+        {% if node.subnav %}
+          {% assign subnav_list = node.subnav %}
+          <ul>
+            {% for subnav in subnav_list %}
+              {% if subnav.tag %}
+                {% capture this_url %}{{ site.baseurl }}{{ node.url }}#{{ subnav.tag }}{% endcapture %}
+              {% else %}
+                {% capture this_url %}{{ site.baseurl }}{{ node.url }}{{ subnav.url }}{% endcapture %}
+              {% endif %}
+              <li><a href="{{ this_url }}">{{ subnav.title }}</a></li>
+            {% endfor %}
+          </ul>
+          {% assign subnav_list = nil %}
+        {% endif %}
       </div>
     {% endif %}
   {% endif %}

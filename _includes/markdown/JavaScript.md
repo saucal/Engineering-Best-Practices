@@ -8,33 +8,9 @@ JavaScript libraries should only be loaded on the page when needed. `jquery-1.11
 
 #### Use jQuery Wisely
 
-[jQuery](http://jquery.com/) is a JavaScript framework that allows us easily accomplish complex tasks such as AJAX and animations. jQuery is great for certain situations but overkill for others. For example, let's say we want to hide an element:
+[jQuery](https://jquery.com/) is a JavaScript framework that allows us easily accomplish complex tasks such as AJAX and animations. jQuery is great for certain situations but overkill for others. 
 
-```javascript
-document.getElementById( 'element' ).style.display = 'none';
-```
-
-vs.
-
-```javascript
-jQuery( '#element' ).hide();
-```
-
-The non-jQuery version is [much faster](http://jsperf.com/hide-with-and-without-jquery) and is still only one line of code.
-
-#### Try to Pass an HTMLElement or HTMLCollection to jQuery Instead of a Selection String
-
-When we create a new jQuery object by passing it a selection string, jQuery uses its selection engine to select those element(s) in the DOM:
-
-```javascript
-jQuery( '#menu' );
-```
-
-We can pass our own [HTMLCollection](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection) or [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) to jQuery to create the same object. Since jQuery does a lot of magic behind the scenes on each selection, [this will be faster](http://jsperf.com/wrap-an-element-or-html-collection-in-jquery):
-
-```javascript
-jQuery( document.getElementById( 'menu' ) );
-```
+If you only need to perform simple tasks, there might be a good alternative in raw JavaScript. A very helpful compilation of these cases is available on [You Might Not Need jQuery](https://youmightnotneedjquery.com/).
 
 #### Cache DOM Selections
 
@@ -79,7 +55,7 @@ $hideButton.on( 'click', function() {
 	$menu.hide();
 });
 ```
-Notice how in cached versions we are pulling the menu selection out of the event handler so it only happens once. Non-jQuery cached is not surprisingly the [fastest way to handle this situation](http://jsperf.com/dom-selection-caching).
+Notice how in cached versions we are pulling the menu selection out of the event handler so it only happens once. Non-jQuery cached is not surprisingly the [fastest way to handle this situation](https://jsperf.com/dom-selection-caching).
 
 #### Event Delegation
 
@@ -103,7 +79,7 @@ jQuery( '#menu' ).on( 'click', 'li', function() {
 });
 ```
 
-The non-jQuery method is as usual [more performant](http://jsperf.com/jquery-vs-non-jquery-event-delegation). You may be wondering why we don't just add one listener to ```<body>``` for all our events. Well, we want the event to *bubble up the DOM as little as possible* for [performance reasons](http://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
+The non-jQuery method is as usual [more performant](https://jsperf.com/jquery-vs-non-jquery-event-delegation). You may be wondering why we don't just add one listener to ```<body>``` for all our events. Well, we want the event to *bubble up the DOM as little as possible* for [performance reasons](https://jsperf.com/event-delegation-distance). This would also be pretty messy code to write.
 
 ### Design Patterns
 
@@ -200,25 +176,26 @@ Another example in JavaScript is ```escape()``` and ```unescape()```. These func
 
 ### Code Style & Documentation
 
-We conform to [WordPress JavaScript coding standards](http://make.wordpress.org/core/handbook/coding-standards/javascript/).
+We conform to [WordPress JavaScript coding standards](https://make.wordpress.org/core/handbook/coding-standards/javascript/).
 
 We conform to the [WordPress JavaScript Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/javascript/).
 
-Use [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/) to automate checks for coding standards violations; note that JSCS also supports [automatically-fixing](http://jscs.info/overview#cli) some of the issues it identifies. Include the [`.jshintrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jshintrc) and [`.jscsrc`](https://github.com/xwp/wp-dev-lib/blob/master/.jscsrc) from [wp-dev-lib](https://github.com/xwp/wp-dev-lib) into your theme/plugin/site repo to configure these linters; these tools can then be run automatically by the [`pre-commit`](https://github.com/xwp/wp-dev-lib#pre-commit-hook) hook and [Travis CI build](https://github.com/xwp/wp-dev-lib#travis).
+Use [ESLint](https://eslint.org/) to automate checks for coding standards violations. Include the [`.eslintrc`](https://github.com/saucal/project-gulp-boilerplate/blob/master/.eslintrc) from [project-gulp-boilerplate](https://github.com/saucal/project-gulp-boilerplate/) into your theme/plugin/site repo to configure these linters.
 
 ### Libraries
 
-There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses. The following is a list of commonly-used libraries used:
+With the influx of JavaScript upgrades in recent years, the need for a third-party library to polyfill functionality is becoming more and more rare (outside of a build script). Don’t load in extensions unless the benefit outweighs the size of and added load-time of using it. While it is often more efficient for coding to use a quick jQuery method, it is rarely worth bringing in an entire library for one-off instances.
 
-#### DOM Manipulation
+If you are working on a legacy project that already contains a library, make sure you’re still evaluating the need for it as you build out features to best set up clients for the future.
 
-[jQuery](http://jquery.com/) - Our and WordPress's library of choice for DOM manipulation.
+There are many JavaScript libraries available today. Many of them directly compete with each other. We try to stay consistent with what WordPress uses.
 
 #### Utility
 
-[Underscore](http://underscorejs.org) - Provides a number of useful utility functions such as ```clone()```, ```each()```, and ```extend()```. WordPress core uses this library quite a bit.
+[Underscore](https://underscorejs.org) - Provides a number of useful utility functions such as ```clone()```, ```each()```, and ```extend()```. WordPress core uses this library quite a bit.
 
 #### Frameworks
 
-[Backbone](http://backbonejs.org) - Provides a framework for building complex JavaScript applications. Backbone is based on the usage of models, views, and collections. WordPress core relies heavily on Backbone especially in the media library. Backbone requires Underscore and a DOM manipulation library (jQuery)
+[ReactJS](https://reactjs.org/) - Using React provides a library to create large-scale, stateful JavaScript applications. It aims to provide a flexible system of creating highly componentized user interfaces.
 
+[Vue](https://vuejs.org/) - Implementing Vue on a project allows us to take advantage of the statefulness built into something like React, but apply it on a much more lightweight and smaller scale as to not bog down performance by loading in a heavy library.
