@@ -16,6 +16,8 @@ subnav:
     tag: code-style--documentation
   - title: Libraries and Frameworks
     tag: libraries-and-frameworks
+  - title: WooCommerce
+    url: woocommerce/
 updated: 6 Oct 2014
 ---
 
