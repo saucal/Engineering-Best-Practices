@@ -3,7 +3,7 @@ page: tools
 title: Tools
 nav: Tools
 group: navigation
-weight: 7
+weight: 8
 layout: default
 subnav:
   - title: Code Checkers

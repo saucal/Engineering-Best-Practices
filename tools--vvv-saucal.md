@@ -4,7 +4,7 @@ title: SAU/CAL's VVV Features
 subhead: Experimental
 nav: SAU/CAL VVV
 group: hidden
-weight: 7
+weight: 8
 layout: default
 permalink: /tools/vvv-saucal/
 subnav:

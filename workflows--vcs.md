@@ -3,7 +3,7 @@ page: vcs
 title: Version Control
 nav: Version Control
 group: hidden
-weight: 7
+weight: 9
 layout: default
 permalink: /workflows/vcs/
 subnav:
