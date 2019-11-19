@@ -2,5 +2,5 @@ We consider standardizing a workflow to be a very important part of the developm
 
 ### Important workflows
 
-- [Version Control](./vcs/)
-- [Maintenance](./maintenance/)
+- [Version Control](./vcs/) - The best ways for handling your commits, branches, merges, etcetera for optimal collaboration.
+- [Maintenance](./maintenance/) - Learn our process when doing maintenance on sites.
