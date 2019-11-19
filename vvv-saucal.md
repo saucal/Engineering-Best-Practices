@@ -5,6 +5,7 @@ nav: SAU/CAL VVV
 group: hidden
 weight: 7
 layout: default
+permalink: /tools/vvv-saucal/
 subnav:
   - title: Sync Features
     tag: sync-features

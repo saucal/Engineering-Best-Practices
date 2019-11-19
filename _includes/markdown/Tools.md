@@ -11,7 +11,7 @@ At SAU/CAL, we use [Vagrant](https://www.vagrantup.com/) to build and interact w
 
 [Varying Vagrant Vagrants](https://github.com/Varying-Vagrant-Vagrants/VVV/) - Our standard Vagrant setup for client sites and local development. 
 
-*Note:* We have a fork of VVV (available [here](https://github.com/saucal/VVV/tree/saucal_version)) which includes support for syncing database and www directories with symlinks (useful only if you use Dropbox or similar). If you're not using several computers to work, then you can ignore this fork, and use the official VVV version. If you want to give it a go, check our more detailed documentation [here](../vvv-saucal/)
+*Note:* We have a fork of VVV (available [here](https://github.com/saucal/VVV/tree/saucal_version)) which includes support for syncing database and www directories with symlinks (useful only if you use Dropbox or similar). If you're not using several computers to work, then you can ignore this fork, and use the official VVV version. If you want to give it a go, check our more detailed documentation [here]({{ site.baseurl }}/tools/vvv-saucal/)
 
 ### Task Runners
 
