@@ -15,13 +15,9 @@ At SAU/CAL, we use [Vagrant](https://www.vagrantup.com/) to build and interact w
 
 ### Task Runners
 
-[Grunt](http://gruntjs.com/) - Grunt is a task runner built on Node that lets you automate tasks like Sass preprocessing and JS minification.
-
-[Gulp](http://gulpjs.com/) - Another task runner also built on Node which is a newer alternative to Grunt. See [comparison](https://medium.com/@preslavrachev/gulp-vs-grunt-why-one-why-the-other-f5d3b398edc4).
+[Gulp](http://gulpjs.com/) - Gulp is a task runner built on Node wthat lets you automate tasks like Sass preprocessing and JS minification.
 
 ### Package/Dependency Managers
-
-[Bower](http://bower.io/) - A good tool to manage front end packages. Usually everything we need is bundled with WordPress. Sometimes we need something like "Chosen.js" that isn’t included. Bower is a good way to manage external libraries like that but is not necessary on most projects.
 
 [Composer](https://getcomposer.org) - We use Composer for managing PHP dependencies. Usually everything we need is bundled with WordPress. Sometimes we need external libraries like "Patchwork". Composer is a great way to manage those external libraries but is not necessary on most projects
 
