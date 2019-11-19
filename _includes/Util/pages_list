@@ -1,7 +1,10 @@
 {% for node in pages_list %}
   {% if null != node.title %}
     {% if null == group or node.group == group %}
+      {% assign checkArray = page.url | split: node.url %}
       {% if page.url == node.url %}
+      <li class="current-menu-item">
+      {% elsif node.url != '/' and checkArray[0] == '' %}
       <li class="current-menu-item">
       {% else %}
       <li>
