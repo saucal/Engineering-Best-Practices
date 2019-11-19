@@ -25,6 +25,8 @@
 		</h1>
 		{% if page.page == "introduction" %}
 			<h3 class="subhead">SAU/CAL Engineering</span>
+		{% elsif page.subhead %}
+			<h3 class="subhead">{{ page.subhead }}</span>
 		{% endif %}
 	</div>
 </header>
