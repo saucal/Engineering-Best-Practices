@@ -7,7 +7,7 @@ weight: 9
 layout: default
 subnav:
   - title: Version Control
-    tag: version-control
+    url: vcs/
   - title: Maintenance
     url: maintenance/
 updated: 14 Dec 2016
