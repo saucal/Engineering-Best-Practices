@@ -6,6 +6,8 @@ group: navigation
 weight: 7
 layout: default
 subnav:
+  - title: Code Checkers
+    tag: code-checkers
   - title: Local Development Environments
     tag: local-development-environments
   - title: Task Runners
