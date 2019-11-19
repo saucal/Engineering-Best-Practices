@@ -3,7 +3,10 @@ The following are the tools we use at SAU/CAL. This list will grow and change ov
 ### Code Checkers
 
 * **[PHP_CodeSniffer WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards)** for [PHP coding standards](../php/#code-style--documentation).
-* **[ESLint](https://eslint.org/)** for JavaScript [code style](../javascript/#code-style--documentation) reporting.
+* **[PHP_CodeSniffer PHP Compatibility Coding Standards](https://github.com/PHPCompatibility/PHPCompatibility)** for checking PHP Version Compatibility.
+* **[ESLint](https://eslint.org/)** for [JavaScript code style](../javascript/#code-style--documentation) reporting.
+
+You can install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) and the above mentioned standards on your MacOS / OSX with [this script](https://github.com/saucal/wp-codesniffer-installer). This script has not been tested in Windows, but if you're a Windows user, feel free to do a PR with compatibility fixes.
 
 ### Local Development Environments
 
