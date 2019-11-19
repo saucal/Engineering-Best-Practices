@@ -15,6 +15,9 @@
 			box-shadow: 0 1px 3px rgba(0,0,0,0);
 			color: #fff;
 		}
+		body.page-vvv-saucal.scroll-at-top & {
+			color: $dark-blue;
+		}
 	}
 
 	body.admin-bar & {
@@ -34,6 +37,9 @@
 		@include breakpoint($breakpoint-bravo) {
 			body.scroll-at-top & {
 				color: #fff;
+			}
+			body.page-vvv-saucal.scroll-at-top & {
+				color: $dark-blue;
 			}
 		}
 		&:before {
@@ -133,6 +139,9 @@
 			body.scroll-at-top & {
 				color: #fff;
 			}
+			body.page-vvv-saucal.scroll-at-top & {
+				color: $dark-blue;
+			}
 		}
 	}
 
@@ -161,11 +170,11 @@
 		@include breakpoint($breakpoint-bravo) {
 			border-top: none;
 		}
-			&:hover {
-				@include breakpoint($breakpoint-bravo) {
-					background-color: transparent;
-				}
+		&:hover {
+			@include breakpoint($breakpoint-bravo) {
+				background-color: transparent;
 			}
+		}
 
 
 		@include breakpoint($breakpoint-bravo) {
@@ -185,6 +194,9 @@
 					transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s,-webkit-box-shadow .15s;
 					body.scroll-at-top & {
 						background-color: #fff;
+					}
+					body.page-vvv-saucal.scroll-at-top & {
+						background-color: $dark-blue;
 					}
 				}
 				bottom: 7px;
@@ -219,6 +231,9 @@
 			body.scroll-at-top & {
 				color: #fff;
 			}
+			body.page-vvv-saucal.scroll-at-top & {
+				color: $dark-blue;
+			}
 		}
 
 		font-family: $font-family-heading;
@@ -244,7 +259,13 @@
 				content: "";
 				width: 100%;
 				height: 5px;
-				background: $color-dark-text;
+				background-color: $dark-blue;
+				body.scroll-at-top & {
+					background-color: #fff;
+				}
+				body.page-vvv-saucal.scroll-at-top & {
+					background-color: $dark-blue;
+				}
 				position: absolute;
 				bottom: 5px;
 				left: 0;
@@ -262,6 +283,10 @@
 			}
 
 		}
+	}
+
+	.subnav a {
+		color: #fff !important;
 	}
 
 }
